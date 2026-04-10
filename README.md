@@ -1,71 +1,55 @@
 ## 🇧🇷 Português: Visão e Objetivos
 
-O HustyCore nasce para preencher a lacuna entre o design puramente visual e a engenharia de software funcional. Em um mercado onde o Time-to-Market é crítico, o ecossistema atua como um acelerador de desenvolvimento, democratizando a criação de interfaces que, embora visualmente complexas (utilizando física de partículas e efeitos de fumaça), mantêm-se rigorosamente acessíveis e performáticas.
+O HustyCore nasce com a firme visão de ser uma **biblioteca open-source de elementos gráficos premium** para a comunidade desenvolvedora. Em um mercado onde o Time-to-Market é crítico, o ecossistema atua como um verdadeiro acelerador de desenvolvimento, democratizando o acesso a componentes de interface visualmente complexos, porém estritamente focados em serem performáticos e de uso intuitivo.
 
 ### Nossos pilares fundamentais incluem:
 
-    Automação de Design Ops: Eliminar o trabalho manual de cálculo de contraste (WCAG) e harmonia cromática, transformando decisões subjetivas de design em algoritmos precisos.
+- **Aceleração para UI (Open-Source):** Uma gama crescente de blocos pre-fabricados de alto nível que permitem que equipes entreguem painéis ou landing-pages profissionais em frações de tempo.
+- **Micro-Interações Avançadas:** Emprego consistente e fluído da Motion Design para transformar UIs estáticas em telas responsivas dinâmicas e esteticamente impecáveis, abolindo a necessidade de os devs re-escreverem complexos frames CSS/JS.
+- **Engine Sem Fricção ("Low Ceiling, High Floor"):** Evitamos integrações pesadas como Three.js/WebGL em favor de soluções "Plug & Play" puramente React. Fornecemos um ecossistema com códigos diretos em Tailwind + Framer Motion. 
 
-    Baixa Barreira, Alto Teto: Uma interface Low-Code que permite que usuários iniciantes construam interfaces profissionais, enquanto oferece exportação de código limpo em React e TypeScript para desenvolvedores seniores.
+###  Principais Funcionalidades:
 
-    Educação Técnica Integrada: Mais do que uma ferramenta de criação, o HustyCore funciona como um tutor linear, ensinando fundamentos de UI e Design Systems durante o processo de construção.
+**Biblioteca de Interface:** Componentes ricos focados no design dark, neon glassmorphism e micro-efeitos prontos;
+**Pré-Visualização do Catálogo:** Uma plataforma portal para você navegar e visualizar a animação no navegador antes do uso;
+**Código Limpo (Copiável):** Blocos de código Vanilla Moderno e TypeScript isolados prontos para colar nas suas páginas.
 
-    Engenharia de Performance: Foco em requisitos não-funcionais rigorosos, garantindo que efeitos visuais pesados (Three.js) não comprometam o carregamento inicial de 2 segundos.
+###  Configuração Técnica:
 
-### ✨ Principais Funcionalidades:
-**Inteligência de Cor:** Cálculo automático de contraste (WCAG) e cores complementares.
+- **Framework:** Next.js 14+ (App Router).
+- **Linguagem:** TypeScript estrito.
+- **Estilização Visual:** Tailwind CSS.
+- **Padrão de Motion:** Framer Motion (para fluídez no ambiente React).
+- **Infra DB:** Acesso modular persistente ao PostgreSQL rodando 100% via Docker na máquina de controle (gerenciado por Prisma ORM).
 
-**Playground Didático:** Tutorial que ensina fundamentos de UI enquanto o usuário constrói.
-
-**Exportação Híbrida:** Gera código Vanilla (HTML/JS) e Moderno (React/TS).
-
-**Efeitos Visuais:** Painel para edição de brilho, fumaça e blur via Three.js.
-
-### 🛠️ Tecnológias:
-**Framework:** Next.js 14+ (App Router).
-
-**Linguagem:** TypeScript.
-
-**Estilização:** Tailwind CSS.
-
-**Banco de Dados:** PostgreSQL com Prisma ORM.
-
-### ⚖️ Licença:
+###  Licença:
 Copyright © 2026 Matheus Calonico. Todos os direitos reservados. Veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
+
+---
 
 ## 🇺🇸 English: Vision & Objectives
 
-HustyCore was created to bridge the gap between pure visual design and functional software engineering. In a market where Time-to-Market is critical, this ecosystem acts as a development accelerator, democratizing the creation of interfaces that—despite their visual complexity (featuring particle physics and smoke effects)—remain strictly accessible and high-performing.
+HustyCore is established with the vision of becoming an **open-source library of premium graphic components** specifically targeted at the wider developer community. When dealing with strict Time-to-Market metrics, this ecosystem functions as a true development accelerator, democratizing access to highly complex visual interfaces while remaining fully performant and intuitive to integrate.
 
 ### Our core pillars include:
 
-    Design Ops Automation: Eliminating the manual labor of calculating contrast (WCAG) and chromatic harmony by transforming subjective design decisions into precise algorithms.
+- **UI Accelerator (Open-Source Focus):** A growing set of high-tier pre-built blocks that allows frontend developers and entire teams to ship professional web applications effortlessly.
+- **Advanced Micro-Interactions:** A consistent fluid approach to web motion design—turning static elements into dynamic, breathtaking experiences, thereby eliminating the need for complex custom framework setups locally.
+- **Frictionless Engineering ("Low Ceiling, High Floor"):** Bypassing heavy graphical engines such as WebGL & Three.js to center purely around lightweight React paradigms like Framer Motion fused directly with Tailwind utility classes.
 
-    Low Floor, High Ceiling: A Low-Code interface that allows beginners to build professional UIs while providing clean React and TypeScript code export for senior developers.
+###  Key Features:
 
-    Integrated Technical Education: More than just a creation tool, HustyCore acts as a linear tutor, teaching UI and Design System fundamentals during the building process.
+**Rich Custom Interface Library:** Curated blocks focusing heavily on dark system layouts, neon hints and deep web glow styles;
+**Component Live Showcase:** A unified platform to navigate real-time interactable preview spaces directly within the browser;
+**Clean Source Codes:** Zero-dependancy (besides standard library deps) modern TypeScript component fragments designed to securely copy and paste into individual modules.
 
-    Performance Engineering: A focus on rigorous non-functional requirements, ensuring that heavy visual effects (Three.js) do not compromise the 2-second initial load time.
+###  Technical Stack Overview:
 
-### ✨ Key Features:
+- **Main Framework:** Next.js 14+ (Standardized around the App Router).
+- **Language Profile:** Strict TypeScript integration entirely.
+- **Theme/Styling Structure:** Core Tailwind CSS implementations.
+- **Fluid Motion Engine:** Framer Motion powering our native React environment layers.
+- **Local Infra Backbone:** Database persistency modeled around strict modular PostgreSQL spun via standard Docker instances (driven by Prisma ORM).
 
-**Color Intelligence:** Automatic contrast calculation (WCAG) and complementary color suggestions.
-
-**Educational Playground:** Linear tutorial teaching UI fundamentals through hands-on building.
-
-**Hybrid Export:** Generates both Vanilla (HTML/JS) and Modern (React/TS) code.
-
-**Visual Effects:** Floating panel for editing parameters like glow, smoke, and blur using Three.js.
-
-### 🛠️ Tech Stack:
-
-**Framework:** Next.js 14+ (App Router).
-
-**Language:** TypeScript.
-
-**Styling:** Tailwind CSS.
-
-**Database:** PostgreSQL with Prisma ORM.
-
-### ⚖️ License:
-Copyright © 2026 Matheus Calonico. All rights reserved. See the [LICENSE](./LICENSE) file for more details.
+###  License:
+Copyright © 2026 Matheus Calonico. All rights reserved. Please review the [LICENSE](./LICENSE) document closely for extended details.
