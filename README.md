@@ -16,7 +16,7 @@ O HustyCore nasce com a firme visão de ser uma **biblioteca open-source de elem
 
 ###  Configuração Técnica:
 
-- **Framework:** Next.js 14+ (App Router).
+- **Framework:** Next.js 16+ (App Router).
 - **Linguagem:** TypeScript estrito.
 - **Estilização Visual:** Tailwind CSS.
 - **Padrão de Motion:** Framer Motion (para fluídez no ambiente React).
@@ -45,7 +45,7 @@ HustyCore is established with the vision of becoming an **open-source library of
 
 ###  Technical Stack Overview:
 
-- **Main Framework:** Next.js 14+ (Standardized around the App Router).
+- **Main Framework:** Next.js 16+ (Standardized around the App Router).
 - **Language Profile:** Strict TypeScript integration entirely.
 - **Theme/Styling Structure:** Core Tailwind CSS implementations.
 - **Fluid Motion Engine:** Framer Motion powering our native React environment layers.
