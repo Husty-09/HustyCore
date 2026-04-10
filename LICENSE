@@ -1,0 +1,41 @@
+HustyCore - Licença Comercial e de Uso (Dual-License)
+
+Copyright (c) 2026 Matheus Calonico. Todos os direitos reservados.
+
+Esta licença estabelece dois níveis distintos de direitos legais para diferentes partes do ecossistema HustyCore: a Plataforma Base e os Componentes/Snippets.
+
+1. A PLATAFORMA HUSTYCORE
+Todos os Direitos Reservados.
+O código-fonte da plataforma web, a arquitetura do site, o design do sistema, a infraestrutura de banco de dados e os mecanismos interativos ("A Plataforma") são estritamente proprietários e pertencem integralmente a Matheus Calonico.
+- Nenhuma parte da Plataforma pode ser copiada, reproduzida, distribuída ou hospedada em formato de cópia ou site concorrente (como um clone). 
+- É expressamente proibido duplicar ou revender a infraestrutura em si deste repositório matriz.
+
+2. OS COMPONENTES GRÁFICOS 
+Permissão de Uso Livre para desenvolvedores, com restrições.
+Você tem a permissão legal e gratuita para copiar, modificar e incorporar livremente os blocos de código (Snippets) dos componentes visuais expostos na biblioteca para criá-los dentro de seus próprios projetos pessoais ou comerciais (projetos para clientes, sistemas SaaS fechados, sites da sua empresa, etc.).
+- RESTRIÇÃO DE REVENDA "COMO ESTÁ": Você NÃO PODE reunir os componentes para agrupá-los e vendê-los cruamente na internet (como um "UI Kit" premium ou Template comercial). 
+- RESTRIÇÃO DE BIBLIOTECA: Você NÃO PODE criar ou publicar uma "nova biblioteca" ou agregador web concorrente listando os nossos componentes sob sua marca de forma aberta (os componentes podem ser usados como tijolos na fundação dos seus softwares, mas você não pode abrir uma loja para distribuir nossos tijolos).
+
+Qualquer violação destes termos suspende automaticamente qualquer autorização de uso e sujeita o infrator às sanções legais de violação de Propriedade Intelectual.
+
+---
+
+HustyCore - Commercial and Use License (Dual-License)
+
+Copyright (c) 2026 Matheus Calonico. All rights reserved.
+
+This license establishes two distinct levels of legal rights for different parts of the HustyCore ecosystem: the Core Platform and the Components/Snippets.
+
+1. THE HUSTYCORE PLATFORM
+All Rights Reserved.
+The source code of the web platform, site architecture, system design, database infrastructure, and interactive mechanisms (The "Platform") are strictly proprietary and belong entirely to Matheus Calonico.
+- No part of the Platform may be copied, reproduced, distributed, or hosted in an identical copy or competing format (a clone).
+- It is expressly prohibited to duplicate or resell the actual infrastructure of this core repository.
+
+2. THE GRAPHICAL COMPONENTS
+Free Use Permission for developers, with restrictions.
+You are granted full and free legal permission to copy, modify, and freely incorporate the raw code blocks (Snippets) of the visual components shown in the library into your own personal or commercial projects (client works, closed SaaS systems, your company's websites, etc).
+- "AS IS" RESALE RESTRICTION: You MAY NOT bundle the components together to sell them purely over the internet (e.g., as a premium "UI Kit" or commercial Template).
+- LIBRARY RESTRICTION: You MAY NOT create or publish a "new library" or competing web aggregator listing our components under your brand openly (components can be used as bricks to build your software, but you cannot open a store to distribute our bricks).
+
+Any violation of these terms automatically revokes any authorization of use and subjects the offender to legal sanctions for Intellectual Property infringement.
