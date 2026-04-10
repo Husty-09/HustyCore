@@ -38,13 +38,3 @@ next-env.d.ts
 # editor
 .vscode/
 .idea/
-
-# database & docker
-docker-data/
-postgres-data/
-*.db
-*.db-journal
-
-# Prisma
-/prisma/data.db
-/prisma/data.db-journal

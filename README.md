@@ -20,7 +20,7 @@ O HustyCore nasce com a firme visão de ser uma **biblioteca open-source de elem
 - **Linguagem:** TypeScript estrito.
 - **Estilização Visual:** Tailwind CSS.
 - **Padrão de Motion:** Framer Motion (para fluídez no ambiente React).
-- **Infra DB:** Acesso modular persistente ao PostgreSQL rodando 100% via Docker na máquina de controle (gerenciado por Prisma ORM).
+- **Arquitetura Zero-DB:** Desenvolvido puramente em padrão Serverless e File-based ("Copy & Paste") para integração imediata, isolando totalmente o overhead de bancos de dados.
 
 ###  Licença:
 Copyright © 2026 Matheus Calonico. Todos os direitos reservados. Veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
@@ -49,7 +49,7 @@ HustyCore is established with the vision of becoming an **open-source library of
 - **Language Profile:** Strict TypeScript integration entirely.
 - **Theme/Styling Structure:** Core Tailwind CSS implementations.
 - **Fluid Motion Engine:** Framer Motion powering our native React environment layers.
-- **Local Infra Backbone:** Database persistency modeled around strict modular PostgreSQL spun via standard Docker instances (driven by Prisma ORM).
+- **Zero-DB Architecture:** Purely generated as a serverless and file-based "Copy & Paste" component catalog, completely avoiding the local database setup and dev-ops overheads.
 
 ###  License:
 Copyright © 2026 Matheus Calonico. All rights reserved. Please review the [LICENSE](./LICENSE) document closely for extended details.
