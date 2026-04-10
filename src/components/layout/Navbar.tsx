@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { name: "Components", href: "/components" },
-  { name: "Documentation", href: "/components" },
+  { name: "Documentation", href: "/components/documentation" },
 ];
 
 export function Navbar() {

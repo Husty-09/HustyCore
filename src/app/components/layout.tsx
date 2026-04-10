@@ -5,7 +5,17 @@ const sidebarLinks = [
     title: "Getting Started",
     links: [
       { name: "Introduction", href: "/components" },
+      { name: "Documentation", href: "/components/documentation" },
       { name: "Installation", href: "/components/installation" },
+    ]
+  },
+  {
+    title: "Eye-Candy Components",
+    links: [
+      { name: "Aurora Background", href: "/components/aurora-background" },
+      { name: "Animated Grid", href: "/components/animated-grid" },
+      { name: "Glow Border", href: "/components/glow-border" },
+      { name: "Text Reveal", href: "/components/text-reveal" },
     ]
   },
   {
