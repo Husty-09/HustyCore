@@ -27,12 +27,12 @@ export const AuroraBackground = ({
           className={cn(
             "filter blur-[10px] sm:blur-[25px] xl:blur-[50px] opacity-40 will-change-transform",
             "absolute -inset-[10%] opacity-50",
-            showRadialGradient && "[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]",
+            showRadialGradient && "[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,transparent_70%)]",
             "after:content-[''] after:absolute after:inset-0 after:[background-image:var(--white-gradient),var(--aurora)] after:[background-size:200%,_100%] after:animate-aurora after:[background-attachment:fixed] after:mix-blend-difference"
           )}
           style={{
-            "--white-gradient": "repeating-linear-gradient(100deg,var(--transparent)_0%,var(--transparent)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--transparent)_16%)",
-            "--aurora": `repeating-linear-gradient(100deg,hsl(var(--primary))_10%,hsl(var(--secondary))_15%,hsl(var(--destructive))_20%,hsl(var(--primary))_25%,hsl(var(--secondary))_30%)`
+            "--white-gradient": "repeating-linear-gradient(100deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.4) 3%, transparent 5%, transparent 12%, rgba(255,255,255,0.4) 16%)",
+            "--aurora": `repeating-linear-gradient(100deg, hsl(var(--primary)) 10%, hsl(150 84% 39%) 15%, hsl(var(--primary)) 20%, hsl(170 84% 39%) 25%, hsl(var(--primary)) 30%)`
           } as React.CSSProperties}
         ></div>
       </div>

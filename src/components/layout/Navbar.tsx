@@ -6,8 +6,10 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { name: "Components", href: "/components" },
   { name: "Documentation", href: "/components/documentation" },
+  { name: "Installation", href: "/components/installation" },
+  { name: "Components", href: "/components" },
+  { name: "Showcase", href: "/components/bento-grid" },
 ];
 
 export function Navbar() {

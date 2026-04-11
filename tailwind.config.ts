@@ -82,6 +82,14 @@ const config: Config = {
         "aurora": {
           from: { backgroundPosition: "50% 50%, 50% 50%" },
           to: { backgroundPosition: "350% 50%, 350% 50%" },
+        },
+        "marquee": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "marquee-vertical": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
         }
       },
       animation: {
@@ -89,7 +97,9 @@ const config: Config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "glow": "glow 3s ease-in-out infinite",
         "fade-in": "fade-in 0.5s ease-out forwards",
-        "aurora": "aurora 60s linear infinite",
+        "aurora": "aurora 15s ease-in-out infinite alternate",
+        "marquee": "marquee var(--duration) linear infinite",
+        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
       },
     },
   },

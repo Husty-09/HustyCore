@@ -32,50 +32,53 @@ export function NexusModal({ isOpen, onClose, title, children }: NexusModalProps
   return (
     <AnimatePresence>
       {isOpen && (
-        <>
-          {/* Backdrop Escuro Focado */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+        <motion.div
+          key="modalWrapper"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 w-full h-full"
+        >
+          {/* Backdrop Escuro e focado */}
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={onClose}
-            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
           />
 
-          {/* Modal Container */}
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="w-full max-w-lg overflow-hidden rounded-2xl border border-border/50 bg-background/80 backdrop-blur-xl shadow-2xl pointer-events-auto relative"
+          {/* Modal Container Vivo */}
+          <motion.div
+            key="modalContent"
+            initial={{ scale: 0.95, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.95, opacity: 0, y: 20 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300, delay: 0.05 }}
+            className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-white/5 dark:border-white/[0.03] bg-white/[0.01] dark:bg-white/[0.01] backdrop-blur-md shadow-2xl"
+            onClick={(e) => e.stopPropagation()} // Impede que cliques flutuantes aqui ativem o onClose subjacente
+          >
+            {/* Botão de Fechar */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-full bg-destructive/10 text-destructive hover:bg-destructive hover:text-destructive-foreground transition-colors duration-200"
+              aria-label="Close modal"
             >
-              {/* Botão de Fechar Vermeho Vibrante */}
-              <button
-                onClick={onClose}
-                className="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-full bg-destructive/10 text-destructive hover:bg-destructive hover:text-destructive-foreground transition-colors duration-200"
-                aria-label="Close modal"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
 
-              {title && (
-                <div className="px-6 pt-6 pb-4 border-b border-border/30">
-                  <h2 className="text-xl font-semibold tracking-tight text-foreground">{title}</h2>
-                </div>
-              )}
-              
-              <div className="p-6 text-muted-foreground">
-                {children}
+            {title && (
+              <div className="px-6 pt-6 pb-4 border-b border-border/30">
+                <h2 className="text-xl font-semibold tracking-tight text-foreground">{title}</h2>
               </div>
-            </motion.div>
-          </div>
-        </>
+            )}
+            
+            <div className="p-6 text-muted-foreground text-sm leading-relaxed">
+              {children}
+            </div>
+          </motion.div>
+        </motion.div>
       )}
     </AnimatePresence>
   );

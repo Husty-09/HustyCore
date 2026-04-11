@@ -103,13 +103,19 @@ export default function NexusModalPage() {
       </div>
 
       <NexusModalUI 
-        title="Settings & Privacy"
+        title="Controle de Privacidade"
         isOpen={isOpen} 
         onClose={() => setIsOpen(false)}
       >
-         <p>Esta é uma visão central das modais. Ela sobe usando propulsores matemáticos do tipo Spring e desfoca completamente itens que caíam por debaixo da tela.</p>
-         <div className="mt-6 flex justify-end">
-            <GlowButton onClick={() => setIsOpen(false)}>Pronto</GlowButton>
+         <div className="bg-primary/10 border border-primary/20 text-primary p-4 rounded-xl mb-6 flex flex-col gap-2">
+           <strong className="text-sm">Configuração Pronta 🎉</strong>
+           <span className="text-xs opacity-90">O modal agora retém a física independente e previne cliques vazando.</span>
+         </div>
+         <p className="mb-2">Esta é uma visualização central orgânica do <strong>NexusModal</strong>.</p>
+         <p className="opacity-80">Ele bloqueia totalmente o foco da janela com seu Blur extremo, subindo utilizando acelerações do tipo <code className="bg-muted px-1 rounded">Spring</code> para um rebote nativo como no ambiente iOS.</p>
+         <div className="mt-8 flex justify-end gap-3 border-t border-border/40 pt-4">
+            <GlowButton variant="default" onClick={() => setIsOpen(false)} className="px-4 py-2">Cancelar</GlowButton>
+            <GlowButton onClick={() => setIsOpen(false)} className="px-5 py-2">Salvar</GlowButton>
          </div>
       </NexusModalUI>
 

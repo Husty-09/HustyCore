@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { GlassCard as GlassCardUI } from "@/components/ui/glass-card";
 import { CodeBlock } from "@/components/ui/code-block";
 import { NeonBadge } from "@/components/ui/neon-badge";
@@ -25,13 +28,13 @@ export const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
         whileHover={{ y: -5, boxShadow: "0px 20px 40px rgba(0,0,0,0.4)" }}
         transition={{ duration: 0.4, ease: "easeOut" }}
         className={cn(
-          "relative overflow-hidden rounded-2xl border border-border/50 bg-background/40 backdrop-blur-xl shadow-lg p-6 transition-colors hover:border-primary/30",
+          "relative overflow-hidden rounded-2xl border border-white/5 dark:border-white/[0.03] bg-white/[0.01] dark:bg-white/[0.01] backdrop-blur-md shadow-lg p-6 transition-colors hover:bg-white/[0.04]",
           className
         )}
         {...props}
       >
         {/* Efeito sútil de gradiente interno simulando a reflexão do vidro */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none -z-10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent pointer-events-none -z-10" />
         {children}
       </motion.div>
     );
@@ -55,10 +58,31 @@ export default function GlassCardPage() {
 
       <div className="flex flex-col gap-4">
         <h3 className="text-lg font-semibold border-b border-border/40 pb-2">Preview</h3>
-        <div className="min-h-[250px] rounded-2xl border border-border/50 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px] flex items-center justify-center p-8">
-          <GlassCardUI className="max-w-md">
-            <h4 className="text-lg font-bold mb-2">Translucidez Nativa</h4>
-            <p className="text-muted-foreground text-sm">Qualquer elemento ou cor da página que passar por debaixo deste cartão será primorosamente desfocado usando a classe backdrop-blur-xl do Tailwind.</p>
+        <div className="relative min-h-[400px] rounded-2xl border border-border/50 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:20px_20px] flex items-center justify-center p-8 overflow-hidden">
+          
+          {/* Animated background element to demonstrate translucency */}
+          <motion.div 
+            animate={{
+              x: [0, 100, -100, 0],
+              y: [0, -50, 50, 0],
+              scale: [1, 1.2, 0.8, 1],
+              rotate: [0, 90, 180, 360],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute w-64 h-64 bg-gradient-to-tr from-primary/40 to-secondary/40 rounded-full blur-3xl"
+          />
+
+          <GlassCardUI className="max-w-md z-10">
+            <h4 className="text-lg font-bold mb-2">Translucidez Real</h4>
+            <p className="text-muted-foreground text-sm">
+              Note como o elemento vibrante se move por trás deste card. O efeito de 
+              <span className="text-primary font-medium"> backdrop-blur-md</span> preserva as cores e formas 
+              enquanto mantém o texto legível através do vidro ultra-fino.
+            </p>
           </GlassCardUI>
         </div>
       </div>

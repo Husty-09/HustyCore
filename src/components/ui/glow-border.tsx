@@ -20,10 +20,11 @@ export function GlowBorder({
   className,
   containerClassName,
   glowColors = [
-    "hsl(var(--primary))",
-    "hsl(var(--secondary))",
-    "hsl(var(--destructive))",
-    "hsl(var(--primary))",
+    "#10b981", // Emerald 500
+    "#06b6d4", // Cyan 500
+    "#3b82f6", // Blue 500
+    "#14b8a6", // Teal 500
+    "#10b981", // Loop back
   ],
   borderWidth = 2,
   ...props

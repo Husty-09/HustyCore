@@ -10,15 +10,6 @@ const sidebarLinks = [
     ]
   },
   {
-    title: "Eye-Candy Components",
-    links: [
-      { name: "Aurora Background", href: "/components/aurora-background" },
-      { name: "Animated Grid", href: "/components/animated-grid" },
-      { name: "Glow Border", href: "/components/glow-border" },
-      { name: "Text Reveal", href: "/components/text-reveal" },
-    ]
-  },
-  {
     title: "Atomic Blocks",
     links: [
       { name: "Glow Button", href: "/components/glow-button" },
@@ -32,6 +23,23 @@ const sidebarLinks = [
       { name: "Glass Input", href: "/components/glass-input" },
       { name: "Motion Dropdown", href: "/components/motion-dropdown" },
       { name: "Nexus Modal", href: "/components/nexus-modal" },
+    ]
+  },
+  {
+    title: "Eye-Candy Components",
+    links: [
+      { name: "Aurora Background", href: "/components/aurora-background" },
+      { name: "Animated Grid", href: "/components/animated-grid" },
+      { name: "Glow Border", href: "/components/glow-border" },
+      { name: "Text Reveal", href: "/components/text-reveal" },
+    ]
+  },
+  {
+    title: "Layout & Showcase",
+    links: [
+      { name: "Bento Grid", href: "/components/bento-grid" },
+      { name: "Infinite Marquee", href: "/components/infinite-marquee" },
+      { name: "3D Glare Card", href: "/components/3d-glare-card" },
     ]
   }
 ];
