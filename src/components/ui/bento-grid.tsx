@@ -48,9 +48,9 @@ export const BentoItem = ({
     <div
       className={cn(
         "row-span-1 rounded-3xl p-6 group/bento flex flex-col justify-between relative overflow-hidden transition-all duration-500 ease-out",
-        "bg-white/[0.01] dark:bg-black/[0.1] backdrop-blur-md",
-        "border border-white/10 dark:border-white/[0.03]",
-        "hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)]",
+        "bg-glass backdrop-blur-md",
+        "border border-glass-border",
+        "hover:shadow-glass-hover",
         className
       )}
       {...props}

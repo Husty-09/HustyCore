@@ -53,7 +53,7 @@ export function NexusModal({ isOpen, onClose, title, children }: NexusModalProps
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300, delay: 0.05 }}
-            className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-white/5 dark:border-white/[0.03] bg-white/[0.01] dark:bg-white/[0.01] backdrop-blur-md shadow-2xl"
+            className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-glass-border bg-glass backdrop-blur-md shadow-2xl"
             onClick={(e) => e.stopPropagation()} // Impede que cliques flutuantes aqui ativem o onClose subjacente
           >
             {/* Botão de Fechar */}

@@ -8,6 +8,14 @@ const sourceCode = `"use client";
 import { cn } from "@/lib/utils";
 import { useId, useEffect, useState } from "react";
 
+export interface AnimatedGridProps extends React.SVGProps<SVGSVGElement> {
+  width?: number;
+  height?: number;
+  x?: number;
+  y?: number;
+  numSquares?: number;
+}
+
 export function AnimatedGrid({
   width = 40,
   height = 40,
@@ -17,16 +25,7 @@ export function AnimatedGrid({
   numSquares = 200,
   className,
   ...props
-}: {
-  width?: number;
-  height?: number;
-  x?: number;
-  y?: number;
-  strokeDasharray?: any;
-  numSquares?: number;
-  className?: string;
-  [key: string]: any;
-}) {
+}: AnimatedGridProps) {
   const id = useId();
   const [squares, setSquares] = useState<Array<[number, number, number, number]>>([]);
 

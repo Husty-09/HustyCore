@@ -27,12 +27,12 @@ export function CodeBlock({ code, language = "tsx", className }: CodeBlockProps)
     <div className={cn("relative rounded-xl overflow-hidden bg-[#0A0A0A] border border-border/40 font-mono text-sm shadow-xl", className)}>
       
       {/* Top Bar / Header */}
-      <div className="flex items-center justify-between px-4 py-2 bg-white/5 border-b border-border/20">
+      <div className="flex items-center justify-between px-4 py-2 bg-glass-border border-b border-border/20">
         <span className="text-xs text-muted-foreground uppercase">{language}</span>
         
         <button
           onClick={handleCopy}
-          className="flex items-center justify-center p-1.5 transition-colors hover:bg-white/10 rounded-md text-muted-foreground"
+          className="flex items-center justify-center p-1.5 transition-colors hover:bg-glass-input rounded-md text-muted-foreground"
           aria-label="Copiar código"
         >
           {isCopied ? (

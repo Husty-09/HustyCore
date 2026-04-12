@@ -4,7 +4,9 @@ import * as React from "react";
 import { HTMLMotionProps, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export interface GlassCardProps extends HTMLMotionProps<"div"> {}
+export interface GlassCardProps extends Omit<HTMLMotionProps<"div">, "children"> {
+  children?: React.ReactNode;
+}
 
 /**
  * GlassCard Component
@@ -18,16 +20,16 @@ export const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
         ref={ref}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        whileHover={{ y: -5, boxShadow: "0px 20px 40px rgba(0,0,0,0.4)" }}
+        whileHover={{ y: -5 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
         className={cn(
-          "relative overflow-hidden rounded-2xl border border-white/5 dark:border-white/[0.03] bg-white/[0.01] dark:bg-white/[0.01] backdrop-blur-md shadow-lg p-6 transition-colors hover:bg-white/[0.04]",
+          "relative overflow-hidden rounded-2xl border border-glass-border bg-glass backdrop-blur-md shadow-glass p-6 transition-[color,background-color,border-color,box-shadow] duration-300 hover:bg-glass-hover hover:shadow-glass-hover",
           className
         )}
         {...props}
       >
         {/* Efeito sútil de gradiente interno simulando a reflexão do vidro */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] to-transparent pointer-events-none -z-10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-glass-hover to-transparent pointer-events-none -z-10" />
         {children}
       </motion.div>
     );

@@ -51,6 +51,17 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        glass: {
+          DEFAULT: "var(--glass)",
+          hover: "var(--glass-hover)",
+          border: "var(--glass-border)",
+          input: "var(--glass-input)",
+          "input-border": "var(--glass-input-border)",
+        },
+      },
+      boxShadow: {
+        glass: "var(--glass-shadow)",
+        "glass-hover": "var(--glass-shadow-hover)",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

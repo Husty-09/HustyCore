@@ -35,6 +35,15 @@
     --ring: 160 84% 39%;
  
     --radius: 0.75rem;
+
+    /* Glassmorphism primitives */
+    --glass: rgba(255, 255, 255, 0.01);
+    --glass-hover: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --glass-input: rgba(255, 255, 255, 0.2);
+    --glass-input-border: rgba(255, 255, 255, 0.3);
+    --glass-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    --glass-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
   }
  
   .dark {
@@ -67,6 +76,15 @@
     --border: 0 0% 14%;
     --input: 0 0% 14%;
     --ring: 189 94% 43%;
+
+    /* Glassmorphism primitives */
+    --glass: rgba(255, 255, 255, 0.01);
+    --glass-hover: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(255, 255, 255, 0.03);
+    --glass-input: rgba(255, 255, 255, 0.1);
+    --glass-input-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    --glass-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
   }
 }
  

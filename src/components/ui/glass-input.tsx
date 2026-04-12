@@ -28,12 +28,12 @@ export const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
             
             // 2. O Segredo do Vidro (Background + Blur)
             // Aumentamos a opacidade do fundo para 20% no tema claro e 10% no escuro
-            "bg-white/20 dark:bg-white/10",
+            "bg-glass-input",
             // Aplicamos um desfoque maior para o fundo não brigar com o texto digitado
             "backdrop-blur-lg", 
             
             // 3. Bordas do Vidro (Dão o contorno de brilho)
-            "border border-white/30 dark:border-white/20",
+            "border border-glass-input-border",
             
             // 4. Texto e Placeholders (Totalmente opacos)
             "text-foreground placeholder:text-foreground/60",
