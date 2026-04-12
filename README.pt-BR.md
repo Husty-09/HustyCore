@@ -29,7 +29,7 @@ O HustyCore é uma biblioteca open-source de componentes premium e altamente int
 Você precisa de algumas dependências base para dar o motor das animações e viabilizar a injeção condicional de classes utilitárias:
 
 ```bash
-npm install framer-motion clsx tailwind-merge
+npm install framer-motion clsx tailwind-merge --legacy-peer-deps
 ```
 
 ### 2. Configurar o `tailwind.config.ts`

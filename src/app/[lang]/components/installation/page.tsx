@@ -6,7 +6,7 @@ import { NeonBadge } from "@/components/ui/neon-badge";
 import { GlassCard } from "@/components/ui/glass-card";
 import { CodeBlock } from "@/components/ui/code-block";
 
-const installCode = `npm install framer-motion tailwind-merge clsx
+const installCode = `npm install framer-motion tailwind-merge clsx --legacy-peer-deps
 npm install -D tailwindcss postcss autoprefixer`;
 
 const utilCode = `import { type ClassValue, clsx } from "clsx";

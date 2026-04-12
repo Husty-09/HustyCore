@@ -23,7 +23,7 @@ Faça a inicialização com a base do projeto clonando o repositório:
 ```bash
 git clone https://github.com/SeuWorkspace/HustyCore.git
 cd HustyCore
-npm install
+npm install --legacy-peer-deps
 ```
 
 ### Execução Local
