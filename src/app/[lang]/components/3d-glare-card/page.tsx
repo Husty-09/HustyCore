@@ -1,3 +1,5 @@
+"use client";
+
 import { useParams } from "next/navigation";
 import { getDictionary } from "@/lib/dictionaries";
 import { GlareCard } from "@/components/ui/3d-glare-card";
