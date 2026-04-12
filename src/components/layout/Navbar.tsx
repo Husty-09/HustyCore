@@ -2,18 +2,30 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import type { Dictionary } from "@/dictionaries/en";
+import { MotionDropdown } from "@/components/ui/motion-dropdown";
 
-const navLinks = [
-  { name: "Documentation", href: "/components/documentation" },
-  { name: "Installation", href: "/components/installation" },
-  { name: "Components", href: "/components" },
-  { name: "Showcase", href: "/components/bento-grid" },
-];
-
-export function Navbar() {
+export function Navbar({ dict, currentLang = "en" }: { dict?: Dictionary, currentLang?: string }) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleLocaleSwitch = (locale: string) => {
+    if (!pathname) return;
+    const segments = pathname.split('/');
+    segments[1] = locale; // Replace the first path segment which is [lang]
+    router.push(segments.join('/'));
+  };
+
+  const navLinks = [
+    { name: dict?.nav.docs || "Documentation", href: `/${currentLang}/components/documentation` },
+    { name: dict?.nav.install || "Installation", href: `/${currentLang}/components/installation` },
+    { name: dict?.nav.components || "Components", href: `/${currentLang}/components` },
+    { name: dict?.nav.showcase || "Showcase", href: `/${currentLang}/components/bento-grid` },
+  ];
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 border-b border-border/40 bg-background/60 backdrop-blur-md">
@@ -58,6 +70,13 @@ export function Navbar() {
 
         {/* Right side Actions */}
         <div className="flex items-center gap-4">
+          <MotionDropdown 
+            label={currentLang.toUpperCase()} 
+            items={[
+               { label: "EN (English)", value: "en", onClick: () => handleLocaleSwitch('en') },
+               { label: "PT (Português)", value: "pt", onClick: () => handleLocaleSwitch('pt') }
+            ]}
+          />
           <Link
             href="https://github.com/Husty-09/HustyCore"
             target="_blank"
@@ -78,8 +97,8 @@ export function Navbar() {
             </svg>
             <span className="sr-only">GitHub</span>
           </Link>
-          <Link href="/components" className="hidden sm:inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md bg-foreground text-background hover:bg-muted-foreground transition-colors shadow-sm">
-            Get Started
+          <Link href={`/${currentLang}/components`} className="hidden sm:inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md bg-foreground text-background hover:bg-muted-foreground transition-colors shadow-sm">
+            {dict?.nav.getStarted || "Get Started"}
           </Link>
         </div>
 
