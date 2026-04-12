@@ -38,6 +38,8 @@ export function Navbar() {
               className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
+              onFocus={() => setHoveredIndex(index)}
+              onBlur={() => setHoveredIndex(null)}
             >
               {hoveredIndex === index && (
                 <motion.div

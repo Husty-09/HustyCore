@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { HTMLMotionProps, motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { HTMLMotionProps, motion, useMotionTemplate, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export interface GlareCardProps extends HTMLMotionProps<"div"> {
@@ -16,6 +16,7 @@ export interface GlareCardProps extends HTMLMotionProps<"div"> {
  */
 export const GlareCard = ({ className, children, ...props }: GlareCardProps) => {
   const ref = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   // Valores de tracking (Posição do mouse relativa ao centro)
   const x = useMotionValue(0);
@@ -58,8 +59,8 @@ export const GlareCard = ({ className, children, ...props }: GlareCardProps) => 
       onMouseLeave={handleMouseLeave}
       style={{
         transformStyle: "preserve-3d",
-        rotateX,
-        rotateY,
+        rotateX: shouldReduceMotion ? 0 : rotateX,
+        rotateY: shouldReduceMotion ? 0 : rotateY,
       }}
       className={cn(
         "relative group/card w-full h-[24rem] rounded-2xl bg-background/60 backdrop-blur-md border border-border/40 overflow-hidden flex flex-col items-center justify-center isolate",
@@ -85,7 +86,7 @@ export const GlareCard = ({ className, children, ...props }: GlareCardProps) => 
 
       {/* Conteúdo Renderizado com transform-z permitindo profundidade (pop-out effect) */}
       <div
-        style={{ transform: "translateZ(50px)" }}
+        style={{ transform: shouldReduceMotion ? "translateZ(0px)" : "translateZ(50px)" }}
         className="w-full h-full p-6 flex flex-col"
       >
         {children}

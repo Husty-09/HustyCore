@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export interface NexusModalProps {
@@ -17,6 +17,8 @@ export interface NexusModalProps {
  * com blur total de fundo. Acompanha botão Fechar (X) destrutivo e click-out para fechar.
  */
 export function NexusModal({ isOpen, onClose, title, children }: NexusModalProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   // Evita o scroll do body quando aberto
   React.useEffect(() => {
     if (isOpen) {
@@ -49,10 +51,10 @@ export function NexusModal({ isOpen, onClose, title, children }: NexusModalProps
           {/* Modal Container Vivo */}
           <motion.div
             key="modalContent"
-            initial={{ scale: 0.95, opacity: 0, y: 20 }}
+            initial={{ scale: shouldReduceMotion ? 1 : 0.95, opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.95, opacity: 0, y: 20 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300, delay: 0.05 }}
+            exit={{ scale: shouldReduceMotion ? 1 : 0.95, opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
+            transition={shouldReduceMotion ? { duration: 0.15, ease: "easeOut" } : { type: "spring", damping: 25, stiffness: 300, delay: 0.05 }}
             className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-glass-border bg-glass backdrop-blur-md shadow-2xl"
             onClick={(e) => e.stopPropagation()} // Impede que cliques flutuantes aqui ativem o onClose subjacente
           >

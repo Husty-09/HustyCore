@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export interface DropdownItem {
@@ -23,6 +23,7 @@ export interface MotionDropdownProps {
 export function MotionDropdown({ label, items, className }: MotionDropdownProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   React.useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -53,10 +54,10 @@ export function MotionDropdown({ label, items, className }: MotionDropdownProps)
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : -10, scale: shouldReduceMotion ? 1 : 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+            exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -10, scale: shouldReduceMotion ? 1 : 0.95 }}
+            transition={shouldReduceMotion ? { duration: 0.15, ease: "easeOut" } : { type: "spring", stiffness: 400, damping: 30 }}
             className="absolute z-50 w-full min-w-48 mt-2 origin-top-left rounded-xl border border-border/50 bg-background/80 backdrop-blur-xl shadow-lg ring-1 ring-black/5"
           >
             <div className="py-1 p-1">

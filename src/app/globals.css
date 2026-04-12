@@ -86,6 +86,13 @@
     --glass-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     --glass-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
   }
+
+  /* Accessibility AA/AAA: High legibility focus rings */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
 }
  
 @layer base {
