@@ -1,31 +1,24 @@
-import { describe, it, expect } from 'vitest';
-import { cn } from './utils';
+import { describe, it, expect } from "vitest";
+import { cn } from "./utils";
 
-describe('Utilitário de mesclagem de classes (cn)', () => {
-  // Teste 1: Caminho Feliz
-  it('deve unir classes simples de texto e margem', () => {
-    const result = cn('text-red-500', 'mt-4');
-    expect(result).toBe('text-red-500 mt-4');
+describe("cn (Tailwind Merge + Clsx)", () => {
+  it("Teste 1 (Caminho Feliz): deve unir classes simples com sucesso", () => {
+    const result = cn("text-red-500", "bg-black");
+    expect(result).toBe("text-red-500 bg-black");
   });
 
-  // Teste 2: Entrada Dinâmica/Inválida
-  it('deve ignorar valores booleanos falsos, null e undefined', () => {
-    const isFalse = false;
-    const isTrue = true;
-    const result = cn(
-      'base-class',
-      isFalse && 'hidden-class',
-      isTrue && 'active-class',
-      null,
-      undefined
-    );
-    expect(result).toBe('base-class active-class');
+  it("Teste 2 (Entrada Inválida): deve ignorar valores nulos, undefined ou booleanos", () => {
+    const result = cn("text-white", null, false, undefined, true && "font-bold");
+    expect(result).toBe("text-white font-bold");
   });
 
-  // Teste 3: Caso Limite (Resolução de Conflitos do Tailwind)
-  it('deve resolver conflitos de classes substituindo o valor mais antigo', () => {
-    // px-2 deve ser sobrescrito por px-4 pelo comportamento do tailwind-merge
-    const result = cn('px-2 py-1', 'px-4');
-    expect(result).toBe('py-1 px-4');
+  it("Teste 3 (Caso Limite): deve resolver conflitos de classes do Tailwind puramente", () => {
+    // A classe 'p-4' deve sobrescrever a 'p-2' pois vêm depois na hierarquia.
+    const result = cn("p-2 text-center", "p-4");
+    expect(result).toBe("text-center p-4");
+
+    // Conflito de background color
+    const bgResult = cn("bg-red-500", "bg-blue-600");
+    expect(bgResult).toBe("bg-blue-600");
   });
 });
