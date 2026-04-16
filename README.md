@@ -50,12 +50,6 @@ npm run dev
 npm run test        # Single run
 npm run test:watch  # Development mode
 ```
-
 ---
-
-## 🤖 DevOps Automation
-This project uses **Conventional Commits** and **SemVer**. 
-- To propose a change: `git commit -m "feat: your feature"`
-- To release a new version: `npm run release` (this updates CHANGELOG.md and bumps package.json version).
 
 Copyright © 2026 Matheus Calonico. All rights reserved. See the [LICENSE](./LICENSE) file for details.
