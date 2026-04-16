@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import {
   HTMLMotionProps,
   motion,
   useMotionTemplate,
   useMotionValue,
   useSpring,
-  useTransform,
   useReducedMotion,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -26,51 +25,43 @@ export const GlareCard = ({ className, children, ...props }: GlareCardProps) => 
   const ref = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
-  // Valores de tracking (Posição do mouse relativa ao centro)
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+  // ── Pixel offsets para o gradiente de glare ─────────────────────────────
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const mouseXSpring = useSpring(mouseX, { stiffness: 300, damping: 30 });
+  const mouseYSpring = useSpring(mouseY, { stiffness: 300, damping: 30 });
 
-  // Física de Spring para suavidade na transição 3D
-  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
-  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
-
-  // CORREÇÃO Fase 3: dimensões reais do card via ResizeObserver
-  // O range anterior [-300, 300] era fixo e causava rotação desproporcional em
-  // cards menores (exagerada) e maiores (fraca)
-  const cardWidth = useRef(0);
-  const cardHeight = useRef(0);
-
-  useEffect(() => {
-    const updateDimensions = () => {
-      if (ref.current) {
-        cardWidth.current = ref.current.offsetWidth;
-        cardHeight.current = ref.current.offsetHeight;
-      }
-    };
-    updateDimensions();
-    const ro = new ResizeObserver(updateDimensions);
-    if (ref.current) ro.observe(ref.current);
-    return () => ro.disconnect();
-  }, []);
+  // ── Ângulos de rotação (em graus) ────────────────────────────────────────
+  // FIX: Usar MotionValues diretamente para rotação evita o bug do useTransform
+  // que captura dimensões = 0 no momento da renderização inicial (stale ref).
+  const rotateXVal = useMotionValue(0);
+  const rotateYVal = useMotionValue(0);
+  const rotateXSpring = useSpring(rotateXVal, { stiffness: 300, damping: 30 });
+  const rotateYSpring = useSpring(rotateYVal, { stiffness: 300, damping: 30 });
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
-    // CORREÇÃO: normaliza pelo tamanho real do elemento para rotação proporcional
-    const normalizedX = (e.clientX - rect.left) / rect.width - 0.5;
-    const normalizedY = (e.clientY - rect.top) / rect.height - 0.5;
-    x.set(normalizedX * cardWidth.current);
-    y.set(normalizedY * cardHeight.current);
+
+    // Normaliza para -0.5…+0.5 relativo ao tamanho real do card
+    const nx = (e.clientX - rect.left) / rect.width - 0.5;
+    const ny = (e.clientY - rect.top) / rect.height - 0.5;
+
+    // Rotação: ±15° dependendo da posição normalizada
+    rotateXVal.set(-ny * 15);
+    rotateYVal.set(nx * 15);
+
+    // Offset de pixel para o gradiente radial de glare
+    mouseX.set(e.clientX - rect.left - rect.width / 2);
+    mouseY.set(e.clientY - rect.top - rect.height / 2);
   }
 
   function handleMouseLeave() {
-    x.set(0);
-    y.set(0);
+    rotateXVal.set(0);
+    rotateYVal.set(0);
+    mouseX.set(0);
+    mouseY.set(0);
   }
-
-  // Interpola para ±15° com base no tamanho real do card
-  const rotateX = useTransform(mouseYSpring, [-cardHeight.current / 2, cardHeight.current / 2], [15, -15]);
-  const rotateY = useTransform(mouseXSpring, [-cardWidth.current / 2, cardWidth.current / 2], [-15, 15]);
 
   return (
     <motion.div
@@ -79,8 +70,8 @@ export const GlareCard = ({ className, children, ...props }: GlareCardProps) => 
       onMouseLeave={handleMouseLeave}
       style={{
         transformStyle: "preserve-3d",
-        rotateX: shouldReduceMotion ? 0 : rotateX,
-        rotateY: shouldReduceMotion ? 0 : rotateY,
+        rotateX: shouldReduceMotion ? 0 : rotateXSpring,
+        rotateY: shouldReduceMotion ? 0 : rotateYSpring,
       }}
       className={cn(
         "relative group/card w-full h-[24rem] rounded-2xl bg-background/60 backdrop-blur-md border border-border/40 overflow-hidden flex flex-col items-center justify-center isolate",
@@ -88,7 +79,7 @@ export const GlareCard = ({ className, children, ...props }: GlareCardProps) => 
       )}
       {...props}
     >
-      {/* Glare Mask (Brilho dinâmico) */}
+      {/* Glare Mask: gradiente radial que segue o mouse */}
       <motion.div
         className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover/card:opacity-100 transition duration-500 -z-10"
         style={{
@@ -101,7 +92,7 @@ export const GlareCard = ({ className, children, ...props }: GlareCardProps) => 
           `,
         }}
       />
-      {/* Fallback Glass Dark Filter */}
+      {/* Filtro escuro de fundo para legibilidade */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 -z-20 pointer-events-none" />
 
       {/* Conteúdo com profundidade (pop-out effect) */}

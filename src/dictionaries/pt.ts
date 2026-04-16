@@ -197,14 +197,14 @@ export const pt: Dictionary = {
       title: "Nexus Modal",
       badge: "UI Sobreposta",
       description: "Caixas de diálogo responsivas que desfocam a página principal. Acompanhadas da mágica do desmonte da tela pelo Framer Motion.",
-      btnLoad: "Testar Modal Limpa",
-      modalTitle: "Controle de Privacidade",
-      modalBadgeReady: "Configuração Pronta 🎉",
-      modalBadgeDesc: "O modal agora retém a física independente e previne cliques vazando.",
-      modalP1: "Esta é uma visualização central orgânica do",
-      modalP2: "Ele bloqueia totalmente o foco da janela com seu Blur extremo, subindo utilizando acelerações do tipo Spring para um rebote nativo como no ambiente iOS.",
-      cancel: "Cancelar",
-      save: "Salvar"
+      btnLoad: "Abrir Demo Ao Vivo",
+      modalTitle: "Componente Funcionando 🎉",
+      modalBadgeReady: "Renderizado via Portal",
+      modalBadgeDesc: "Este modal é injetado diretamente no document.body via React Portal, ignorando todos os transforms e stacking contexts dos elementos pai.",
+      modalP1: "Você está vendo o",
+      modalP2: "Suporta foco capturado, trava de scroll e respeita prefers-reduced-motion. Copie e adicione em qualquer projeto.",
+      cancel: "Fechar",
+      save: "Entendido!"
     }
   }
 };

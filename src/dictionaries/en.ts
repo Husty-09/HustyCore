@@ -195,14 +195,14 @@ export const en = {
       title: "Nexus Modal",
       badge: "Overlay UI",
       description: "Responsive dialog boxes that blur the main page. Accompanied by Framer Motion's unmount magic.",
-      btnLoad: "Test Clean Modal",
-      modalTitle: "Privacy Control",
-      modalBadgeReady: "Setup Ready 🎉",
-      modalBadgeDesc: "The modal now retains independent physics and prevents click leakage.",
-      modalP1: "This is an organic central view of",
-      modalP2: "It fully traps window focus with extreme Blur, popping up with Spring acceleration for genuine iOS-like bounce.",
-      cancel: "Cancel",
-      save: "Save"
+      btnLoad: "Open Live Demo",
+      modalTitle: "Component Working 🎉",
+      modalBadgeReady: "Portal Rendered",
+      modalBadgeDesc: "This modal is injected directly into document.body via React Portal, bypassing all parent transforms and stacking contexts.",
+      modalP1: "You are looking at the",
+      modalP2: "It supports focus trapping, scroll lock, and respects prefers-reduced-motion. Copy and drop it into any project.",
+      cancel: "Dismiss",
+      save: "Got it!"
     }
   }
 };
