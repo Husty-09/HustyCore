@@ -14,6 +14,16 @@ export interface MarqueeProps extends React.HTMLAttributes<HTMLDivElement> {
  * InfiniteMarquee Component
  * Transição infinita baseada em CSS Animations para performance de hardware bruta.
  * Ideal para listar Brands, Tech-stacks ou User Testimonials.
+ *
+ * ── SSR Compatibility ──────────────────────────────────────────────────────────
+ * Este componente é Server-Compatible (não precisa de "use client") SOMENTE quando:
+ *   ✅ `children` for estático (ex: textos, imagens sem interatividade)
+ *   ✅ `pauseOnHover` for false (interaction puramente CSS via group-hover)
+ *
+ * Adicione "use client" ao CONSUMIDOR se:
+ *   ❌ `children` contiver componentes com hooks (useEffect, useState, etc.)
+ *   ❌ `reverse` ou `repeat` forem calculados dinamicamente no cliente
+ * ────────────────────────────────────────────────────────────────────────────────
  */
 export function InfiniteMarquee({
   className,

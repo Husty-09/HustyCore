@@ -16,7 +16,16 @@ export const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
   ({ className, type, icon, label, ...props }, ref) => {
     return (
       <div className="w-full space-y-2">
-        {label && <label className="text-sm font-medium ml-1 text-muted-foreground">{label}</label>}
+      {label && (
+        // CORREÇÃO A11y: htmlFor associa o label ao input pelo id
+        // Sem isso, um clique no label não focava o input e screen readers perdiam o contexto
+        <label
+          htmlFor={props.id}
+          className="text-sm font-medium ml-1 text-muted-foreground"
+        >
+          {label}
+        </label>
+      )}
         <div className="relative flex items-center w-full">
         {icon && (
           <div className="absolute left-3 text-muted-foreground z-10">

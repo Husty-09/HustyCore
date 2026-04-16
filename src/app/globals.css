@@ -118,3 +118,13 @@
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
                     linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
 }
+
+/* A11y: Tailwind v3's `animate-pulse` não respeita prefers-reduced-motion nativamente.
+   Este override garante conformidade com WCAG 2.1 SC 2.3.3 (Animation from Interactions). */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse,
+  .animate-marquee,
+  .animate-marquee-vertical {
+    animation: none !important;
+  }
+}

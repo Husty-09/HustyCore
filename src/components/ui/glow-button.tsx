@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { HTMLMotionProps, motion } from "framer-motion";
+import { HTMLMotionProps, motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export interface GlowButtonProps extends HTMLMotionProps<"button"> {
@@ -15,22 +15,30 @@ export interface GlowButtonProps extends HTMLMotionProps<"button"> {
  */
 export const GlowButton = React.forwardRef<HTMLButtonElement, GlowButtonProps>(
   ({ className, variant = "primary", children, ...props }, ref) => {
-    
-    // Mapeamos a variante para utilizar classes semânticas do Tailwind
+    const shouldReduceMotion = useReducedMotion();
+
+    // CORREÇÃO Zero-DB: usa `hsl(var(--token))` para respeitar qualquer tema customizado
+    // rgba hardcoded anteriores quebravam temas onde --primary não era verde (#10B981)
     const variantClasses = {
-      primary: "bg-primary text-primary-foreground shadow-[0_0_10px_rgba(16,185,129,0.3)] hover:shadow-[0_0_20px_rgba(16,185,129,0.6)]",
-      secondary: "bg-secondary text-secondary-foreground shadow-[0_0_10px_rgba(6,182,212,0.3)] hover:shadow-[0_0_20px_rgba(6,182,212,0.6)]",
-      destructive: "bg-destructive text-destructive-foreground shadow-[0_0_10px_rgba(239,68,68,0.3)] hover:shadow-[0_0_20px_rgba(239,68,68,0.6)]",
+      primary:
+        "bg-primary text-primary-foreground shadow-[0_0_10px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_25px_hsl(var(--primary)/0.6)]",
+      secondary:
+        "bg-secondary text-secondary-foreground shadow-[0_0_10px_hsl(var(--secondary)/0.3)] hover:shadow-[0_0_25px_hsl(var(--secondary)/0.6)]",
+      destructive:
+        "bg-destructive text-destructive-foreground shadow-[0_0_10px_hsl(var(--destructive)/0.3)] hover:shadow-[0_0_25px_hsl(var(--destructive)/0.6)]",
       default: "bg-muted text-muted-foreground hover:bg-muted/80",
     };
 
     return (
       <motion.button
         ref={ref}
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={shouldReduceMotion ? {} : { scale: 1.03 }}
+        whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
         className={cn(
-          "inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+          "inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold",
+          "transition-[box-shadow,background-color,transform] duration-300",
+          // focus-visible: apenas para navegação por teclado (não aparece no clique com mouse)
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           variantClasses[variant],
           className
         )}

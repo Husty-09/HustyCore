@@ -1,7 +1,15 @@
 "use client";
 
-import React, { useRef } from "react";
-import { HTMLMotionProps, motion, useMotionTemplate, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
+import React, { useRef, useEffect } from "react";
+import {
+  HTMLMotionProps,
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export interface GlareCardProps extends HTMLMotionProps<"div"> {
@@ -22,35 +30,47 @@ export const GlareCard = ({ className, children, ...props }: GlareCardProps) => 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  // Física de Spring (mola) para suavidade na transição 3D
+  // Física de Spring para suavidade na transição 3D
   const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
   const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
+
+  // CORREÇÃO Fase 3: dimensões reais do card via ResizeObserver
+  // O range anterior [-300, 300] era fixo e causava rotação desproporcional em
+  // cards menores (exagerada) e maiores (fraca)
+  const cardWidth = useRef(0);
+  const cardHeight = useRef(0);
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (ref.current) {
+        cardWidth.current = ref.current.offsetWidth;
+        cardHeight.current = ref.current.offsetHeight;
+      }
+    };
+    updateDimensions();
+    const ro = new ResizeObserver(updateDimensions);
+    if (ref.current) ro.observe(ref.current);
+    return () => ro.disconnect();
+  }, []);
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
-    
-    // Calcula posição relativa ao centro do elemento
-    const width = rect.width;
-    const height = rect.height;
-    
-    const mouseX = e.clientX - rect.left - width / 2;
-    const mouseY = e.clientY - rect.top - height / 2;
-
-    x.set(mouseX);
-    y.set(mouseY);
+    // CORREÇÃO: normaliza pelo tamanho real do elemento para rotação proporcional
+    const normalizedX = (e.clientX - rect.left) / rect.width - 0.5;
+    const normalizedY = (e.clientY - rect.top) / rect.height - 0.5;
+    x.set(normalizedX * cardWidth.current);
+    y.set(normalizedY * cardHeight.current);
   }
 
   function handleMouseLeave() {
-    // Retorna ao centro graciosamente
     x.set(0);
     y.set(0);
   }
 
-  // Interpola o deslocamento linear do mouse para uma angulação máxima de ~15 graus
-  // Assumimos que a tela não é maior que 600px para o card nesse uso ideal
-  const rotateX = useTransform(mouseYSpring, [-300, 300], [15, -15]);
-  const rotateY = useTransform(mouseXSpring, [-300, 300], [-15, 15]);
+  // Interpola para ±15° com base no tamanho real do card
+  const rotateX = useTransform(mouseYSpring, [-cardHeight.current / 2, cardHeight.current / 2], [15, -15]);
+  const rotateY = useTransform(mouseXSpring, [-cardWidth.current / 2, cardWidth.current / 2], [-15, 15]);
 
   return (
     <motion.div
@@ -84,7 +104,7 @@ export const GlareCard = ({ className, children, ...props }: GlareCardProps) => 
       {/* Fallback Glass Dark Filter */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 -z-20 pointer-events-none" />
 
-      {/* Conteúdo Renderizado com transform-z permitindo profundidade (pop-out effect) */}
+      {/* Conteúdo com profundidade (pop-out effect) */}
       <div
         style={{ transform: shouldReduceMotion ? "translateZ(0px)" : "translateZ(50px)" }}
         className="w-full h-full p-6 flex flex-col"

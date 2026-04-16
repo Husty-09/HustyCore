@@ -21,7 +21,7 @@ export const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         whileHover={{ y: -5 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
+        transition={{ type: "spring", stiffness: 180, damping: 22 }}
         className={cn(
           "relative overflow-hidden rounded-2xl border border-glass-border bg-glass backdrop-blur-md shadow-glass p-6 transition-[color,background-color,border-color,box-shadow] duration-300 hover:bg-glass-hover hover:shadow-glass-hover",
           className

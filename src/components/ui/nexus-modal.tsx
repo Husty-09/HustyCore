@@ -51,6 +51,9 @@ export function NexusModal({ isOpen, onClose, title, children }: NexusModalProps
           {/* Modal Container Vivo */}
           <motion.div
             key="modalContent"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={title ? "nexus-modal-title" : undefined}
             initial={{ scale: shouldReduceMotion ? 1 : 0.95, opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: shouldReduceMotion ? 1 : 0.95, opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
@@ -60,8 +63,9 @@ export function NexusModal({ isOpen, onClose, title, children }: NexusModalProps
           >
             {/* Botão de Fechar */}
             <button
+              autoFocus
               onClick={onClose}
-              className="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-full bg-destructive/10 text-destructive hover:bg-destructive hover:text-destructive-foreground transition-colors duration-200"
+              className="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-full bg-destructive/10 text-destructive hover:bg-destructive hover:text-destructive-foreground transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-destructive focus-visible:ring-offset-2"
               aria-label="Close modal"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -72,10 +76,12 @@ export function NexusModal({ isOpen, onClose, title, children }: NexusModalProps
 
             {title && (
               <div className="px-6 pt-6 pb-4 border-b border-border/30">
-                <h2 className="text-xl font-semibold tracking-tight text-foreground">{title}</h2>
+                <h2 id="nexus-modal-title" className="text-xl font-semibold tracking-tight text-foreground">
+                  {title}
+                </h2>
               </div>
             )}
-            
+
             <div className="p-6 text-muted-foreground text-sm leading-relaxed">
               {children}
             </div>
