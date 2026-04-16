@@ -125,15 +125,22 @@ export const pt: Dictionary = {
       accessibilityTitle: "Design Inclusivo (A11y)",
       accessibilityDesc: "Seguimos rigorosamente os padrões ARIA e implementamos suporte nativo para 'prefers-reduced-motion', garantindo que a interface seja utilizável por todos.",
       tokensTitle: "Design Tokens",
-      tokensDesc: "Nossas variáveis CSS são a espinha dorsal da biblioteca. Elas permitem a troca instantânea de temas e personalização profunda dos efeitos de vidro."
+      tokensDesc: "Nossas variáveis CSS são a espinha dorsal da biblioteca. Elas permitem a troca instantânea de temas e personalização profunda dos efeitos de vidro.",
+      badge1: "Filosofia Central",
+      badge2: "Responsividade",
+      badge3: "Magia em Movimento"
     },
     install: {
       title: "Instalação",
       description: "Como injetar o poder do HustyCore diretamente no seu projeto Next.js + Tailwind.",
       step1Title: "1. Instale as Dependências",
       step1Desc: "O HustyCore é extremamente leve, dependendo primariamente do Framer Motion para fluidez e tailwind-merge para compatibilidade de classes.",
-      step2Title: "2. Crie o Utilitário de Estilo",
-      step2Desc: "Crie um arquivo em src/lib/utils.ts e adicione a função cn()."
+      step2AutoTitle: "2. Automação & Versionamento",
+      step2AutoDesc: "Para manter a alta qualidade, recomendamos configurar o Commitlint e o Standard Version para automatizar seu pipeline de deployment.",
+      step2Title: "3. Crie o Utilitário de Estilo",
+      step2Desc: "Crie um arquivo em src/lib/utils.ts e adicione a função cn().",
+      tipTitle: "Dica Pro: Dependências de Peer",
+      tipDesc: "Se você encontrar conflitos de versão com o React 19 (que está atualmente em RC), use a flag --legacy-peer-deps durante a instalação para garantir compatibilidade com o Framer Motion."
     },
     overview: {
       badge: "Bem-vindo ao HustyCore",

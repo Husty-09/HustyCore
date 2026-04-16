@@ -44,10 +44,10 @@ export default async function InstallationPage({ params }: { params: Promise<{ l
       <section className="flex flex-col gap-6">
         <div className="flex items-center gap-3 border-b border-border/40 pb-2">
            <span className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-secondary-foreground font-bold text-sm">2</span>
-           <h3 className="text-xl font-semibold tracking-tight">Automation & SemVer</h3>
+           <h3 className="text-xl font-semibold tracking-tight">{dict.components.install.step2AutoTitle}</h3>
         </div>
         <p className="text-muted-foreground leading-relaxed">
-          To maintain high quality, we recommend setting up **Commitlint** and **Standard Version** to automate your deployment pipeline.
+          {dict.components.install.step2AutoDesc}
         </p>
         <CodeBlock code={devToolsCode} language="bash" />
       </section>
@@ -68,9 +68,10 @@ export default async function InstallationPage({ params }: { params: Promise<{ l
             <span className="text-2xl">💡</span>
          </div>
          <div className="flex flex-col gap-2">
-            <h4 className="font-bold text-lg">Pro Tip: Peer Dependencies</h4>
+            <h4 className="font-bold text-lg">{dict.components.install.tipTitle}</h4>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              If you encounter version conflicts with React 19 (which is currently in RC), use the <code className="bg-primary/20 text-primary px-1 rounded">--legacy-peer-deps</code> flag during installation to ensure compatibility with Framer Motion.
+              {dict.components.install.tipDesc}{" "}
+              <code className="bg-primary/20 text-primary px-1 rounded">--legacy-peer-deps</code>
             </p>
          </div>
       </GlassCard>

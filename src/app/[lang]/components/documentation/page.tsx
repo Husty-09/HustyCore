@@ -23,7 +23,7 @@ export default async function DocumentationPage({ params }: { params: Promise<{ 
       <section className="flex flex-col gap-6">
         <div className="flex items-center gap-2 border-b border-border/40 pb-2">
            <h3 className="text-2xl font-semibold tracking-tight">{dict.components.docs.p1Title}</h3>
-           <NeonBadge variant="primary" pulse={false}>Core Philosophy</NeonBadge>
+           <NeonBadge variant="primary" pulse={false}>{dict.components.docs.badge1}</NeonBadge>
         </div>
         <p className="text-muted-foreground leading-relaxed max-w-4xl italic">
           &quot;{dict.components.docs.p1Desc}&quot;
@@ -31,12 +31,12 @@ export default async function DocumentationPage({ params }: { params: Promise<{ 
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
             <GlassCard className="p-8 border-primary/20 bg-primary/5">
-                <NeonBadge variant="primary" className="mb-4">Responsivity</NeonBadge>
+                <NeonBadge variant="primary" className="mb-4">{dict.components.docs.badge2}</NeonBadge>
                 <h4 className="text-lg font-bold mb-3">{dict.components.docs.card1Title}</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">{dict.components.docs.card1Desc}</p>
             </GlassCard>
             <GlassCard className="p-8 border-secondary/20 bg-secondary/5">
-                <NeonBadge variant="secondary" className="mb-4">Motion Magic</NeonBadge>
+                <NeonBadge variant="secondary" className="mb-4">{dict.components.docs.badge3}</NeonBadge>
                 <h4 className="text-lg font-bold mb-3">{dict.components.docs.card2Title}</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">{dict.components.docs.card2Desc}</p>
             </GlassCard>
