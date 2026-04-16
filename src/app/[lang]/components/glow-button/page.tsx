@@ -1,54 +1,14 @@
-"use client";
-
-import { useParams } from "next/navigation";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { getDictionary } from "@/lib/dictionaries";
 import { GlowButton as GlowButtonUI } from "@/components/ui/glow-button";
 import { CodeBlock } from "@/components/ui/code-block";
 import { NeonBadge } from "@/components/ui/neon-badge";
 
-const sourceCode = `"use client";
-
-import * as React from "react";
-import { HTMLMotionProps, motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-
-export interface GlowButtonProps extends HTMLMotionProps<"button"> {
-  variant?: "primary" | "secondary" | "destructive" | "default";
-}
-
-export const GlowButton = React.forwardRef<HTMLButtonElement, GlowButtonProps>(
-  ({ className, variant = "primary", children, ...props }, ref) => {
-    
-    const variantClasses = {
-      primary: "bg-primary text-primary-foreground shadow-[0_0_10px_rgba(16,185,129,0.3)] hover:shadow-[0_0_20px_rgba(16,185,129,0.6)]",
-      secondary: "bg-secondary text-secondary-foreground shadow-[0_0_10px_rgba(6,182,212,0.3)] hover:shadow-[0_0_20px_rgba(6,182,212,0.6)]",
-      destructive: "bg-destructive text-destructive-foreground shadow-[0_0_10px_rgba(239,68,68,0.3)] hover:shadow-[0_0_20px_rgba(239,68,68,0.6)]",
-      default: "bg-muted text-muted-foreground hover:bg-muted/80",
-    };
-
-    return (
-      <motion.button
-        ref={ref}
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.95 }}
-        className={cn(
-          "inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-          variantClasses[variant],
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </motion.button>
-    );
-  }
-);
-
-GlowButton.displayName = "GlowButton";`;
-
-export default function GlowButtonPage() {
-  const { lang } = useParams() as { lang: string };
-  const dict = getDictionary(lang);
+export default async function GlowButtonPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+  const sourceCode = readFileSync(join(process.cwd(), "src/components/ui/glow-button.tsx"), "utf-8");
 
   return (
     <div className="flex flex-col gap-10">

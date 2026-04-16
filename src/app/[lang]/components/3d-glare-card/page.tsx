@@ -1,6 +1,5 @@
-"use client";
-
-import { useParams } from "next/navigation";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { getDictionary } from "@/lib/dictionaries";
 import { GlareCard } from "@/components/ui/3d-glare-card";
 import { CodeBlock } from "@/components/ui/code-block";
@@ -27,92 +26,10 @@ export function GlareCardDemo() {
   );
 }`;
 
-const sourceCode = `"use client";
-
-import React, { useRef } from "react";
-import { HTMLMotionProps, motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { cn } from "@/lib/utils";
-
-export interface GlareCardProps extends HTMLMotionProps<"div"> {
-  className?: string;
-  children: React.ReactNode;
-}
-
-export const GlareCard = ({ className, children, ...props }: GlareCardProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
-  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
-
-  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    
-    // Calculates position relative to center of the component
-    const width = rect.width;
-    const height = rect.height;
-    
-    const mouseX = e.clientX - rect.left - width / 2;
-    const mouseY = e.clientY - rect.top - height / 2;
-
-    x.set(mouseX);
-    y.set(mouseY);
-  }
-
-  function handleMouseLeave() {
-    x.set(0);
-    y.set(0);
-  }
-
-  const rotateX = useTransform(mouseYSpring, [-300, 300], [15, -15]);
-  const rotateY = useTransform(mouseXSpring, [-300, 300], [-15, 15]);
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transformStyle: "preserve-3d",
-        rotateX,
-        rotateY,
-      }}
-      className={cn(
-        "relative group/card w-full h-[24rem] rounded-2xl bg-background/60 backdrop-blur-md border border-border/40 overflow-hidden flex flex-col items-center justify-center isolate",
-        className
-      )}
-      {...props}
-    >
-      <motion.div
-        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover/card:opacity-100 transition duration-500 -z-10"
-        style={{
-          background: useMotionTemplate\`
-            radial-gradient(
-              400px circle at calc(50% + \${mouseXSpring}px) calc(50% + \${mouseYSpring}px),
-              hsl(var(--primary) / 0.15),
-              transparent 40%
-            )
-          \`,
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 -z-20 pointer-events-none" />
-
-      <div
-        style={{ transform: "translateZ(50px)" }}
-        className="w-full h-full p-6 flex flex-col"
-      >
-        {children}
-      </div>
-    </motion.div>
-  );
-};`;
-
-export default function GlareCardPage() {
-  const { lang } = useParams() as { lang: string };
-  const dict = getDictionary(lang);
+export default async function GlareCardPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+  const sourceCode = readFileSync(join(process.cwd(), "src/components/ui/3d-glare-card.tsx"), "utf-8");
 
   return (
     <div className="flex flex-col gap-10">

@@ -9,7 +9,7 @@ export default async function ComponentsLayout({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const dict = getDictionary(lang);
+  const dict = await getDictionary(lang);
 
   const sidebarLinks = [
     {

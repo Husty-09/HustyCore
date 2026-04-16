@@ -1,14 +1,11 @@
-"use client";
-
-import { useParams } from "next/navigation";
 import { getDictionary } from "@/lib/dictionaries";
 import { NeonBadge } from "@/components/ui/neon-badge";
 import { GlassCard } from "@/components/ui/glass-card";
 import { AnimatedGrid } from "@/components/ui/animated-grid";
 
-export default function ComponentsOverview() {
-  const { lang } = useParams() as { lang: string };
-  const dict = getDictionary(lang);
+export default async function ComponentsOverview({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
 
   return (
     <div className="flex flex-col gap-10 relative w-full h-full pb-20">

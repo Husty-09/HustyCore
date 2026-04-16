@@ -12,7 +12,8 @@ export interface DropdownItem {
 
 export interface MotionDropdownProps {
   label: string;
-  items: DropdownItem[];
+  items?: DropdownItem[];
+  children?: React.ReactNode;
   className?: string;
 }
 
@@ -20,7 +21,7 @@ export interface MotionDropdownProps {
  * MotionDropdown Component
  * Dropdown elegante que desliza via spring physic, servindo para inputs ou seleções curtas.
  */
-export function MotionDropdown({ label, items, className }: MotionDropdownProps) {
+export function MotionDropdown({ label, items, children, className }: MotionDropdownProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
@@ -61,7 +62,7 @@ export function MotionDropdown({ label, items, className }: MotionDropdownProps)
             className="absolute z-50 w-full min-w-48 mt-2 origin-top-left rounded-xl border border-border/50 bg-background/80 backdrop-blur-xl shadow-lg ring-1 ring-black/5"
           >
             <div className="py-1 p-1">
-              {items.map((item) => (
+              {children ? children : items?.map((item) => (
                 <button
                   key={item.value}
                   onClick={() => {

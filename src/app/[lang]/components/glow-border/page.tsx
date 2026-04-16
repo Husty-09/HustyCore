@@ -1,60 +1,14 @@
-"use client";
-
-import { useParams } from "next/navigation";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { getDictionary } from "@/lib/dictionaries";
 import { GlowBorder as GlowBorderUI } from "@/components/ui/glow-border";
 import { CodeBlock } from "@/components/ui/code-block";
 import { NeonBadge } from "@/components/ui/neon-badge";
 
-const sourceCode = `"use client";
-
-import React from "react";
-import { cn } from "@/lib/utils";
-
-export interface GlowBorderProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-  containerClassName?: string;
-  glowColors?: string[];
-  borderWidth?: number;
-}
-
-export function GlowBorder({
-  children,
-  className,
-  containerClassName,
-  glowColors = [
-    "hsl(var(--primary))",
-    "hsl(var(--secondary))",
-    "hsl(var(--destructive))",
-    "hsl(var(--primary))",
-  ],
-  borderWidth = 2,
-  ...props
-}: GlowBorderProps) {
-  return (
-    <div
-      className={cn("relative overflow-hidden rounded-2xl", containerClassName)}
-      style={{ padding: borderWidth }}
-      {...props}
-    >
-      <div
-        className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite]"
-        style={{
-          background: \`conic-gradient(from 90deg at 50% 50%, \${glowColors.join(",")})\`,
-        }}
-      />
-      <div
-        className={cn("relative h-full w-full rounded-[calc(1rem-2px)] bg-background", className)}
-      >
-        {children}
-      </div>
-    </div>
-  );
-}`;
-
-export default function GlowBorderPage() {
-  const { lang } = useParams() as { lang: string };
-  const dict = getDictionary(lang);
+export default async function GlowBorderPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+  const sourceCode = readFileSync(join(process.cwd(), "src/components/ui/glow-border.tsx"), "utf-8");
 
   return (
     <div className="flex flex-col gap-10">

@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 
 export interface GlassInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ReactNode;
+  label?: string;
 }
 
 /**
@@ -12,9 +13,11 @@ export interface GlassInputProps extends React.InputHTMLAttributes<HTMLInputElem
  * Input com efeito Glassmorphism (translúcido real) e anel de brilho no foco.
  */
 export const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
-  ({ className, type, icon, ...props }, ref) => {
+  ({ className, type, icon, label, ...props }, ref) => {
     return (
-      <div className="relative flex items-center w-full">
+      <div className="w-full space-y-2">
+        {label && <label className="text-sm font-medium ml-1 text-muted-foreground">{label}</label>}
+        <div className="relative flex items-center w-full">
         {icon && (
           <div className="absolute left-3 text-muted-foreground z-10">
             {icon}
@@ -50,6 +53,7 @@ export const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
           ref={ref}
           {...props}
         />
+        </div>
       </div>
     );
   }

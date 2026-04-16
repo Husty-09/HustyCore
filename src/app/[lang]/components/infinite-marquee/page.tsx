@@ -1,6 +1,5 @@
-"use client";
-
-import { useParams } from "next/navigation";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { getDictionary } from "@/lib/dictionaries";
 import { InfiniteMarquee } from "@/components/ui/infinite-marquee";
 import { GlowButton } from "@/components/ui/glow-button";
@@ -20,58 +19,10 @@ export function MarqueeDemo() {
   );
 }`;
 
-const sourceCode = `import { cn } from "@/lib/utils";
-import React from "react";
-
-export interface MarqueeProps extends React.HTMLAttributes<HTMLDivElement> {
-  className?: string;
-  reverse?: boolean;
-  pauseOnHover?: boolean;
-  children: React.ReactNode;
-  vertical?: boolean;
-  repeat?: number;
-}
-
-export function InfiniteMarquee({
-  className,
-  reverse,
-  pauseOnHover = false,
-  children,
-  vertical = false,
-  repeat = 4,
-  ...props
-}: MarqueeProps) {
-  return (
-    <div
-      {...props}
-      className={cn(
-        "group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)]",
-        { "flex-row": !vertical, "flex-col": vertical },
-        className
-      )}
-    >
-      {Array(repeat)
-        .fill(0)
-        .map((_, i) => (
-          <div
-            key={i}
-            className={cn("flex shrink-0 justify-around [gap:var(--gap)]", {
-              "animate-marquee flex-row": !vertical,
-              "animate-marquee-vertical flex-col": vertical,
-              "group-hover:[animation-play-state:paused]": pauseOnHover,
-              "[animation-direction:reverse]": reverse,
-            })}
-          >
-            {children}
-          </div>
-        ))}
-    </div>
-  );
-}`;
-
-export default function InfiniteMarqueePage() {
-  const { lang } = useParams() as { lang: string };
-  const dict = getDictionary(lang);
+export default async function InfiniteMarqueePage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+  const sourceCode = readFileSync(join(process.cwd(), "src/components/ui/infinite-marquee.tsx"), "utf-8");
 
   return (
     <div className="flex flex-col gap-10">

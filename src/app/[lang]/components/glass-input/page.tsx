@@ -1,60 +1,21 @@
-"use client";
-
-import { useParams } from "next/navigation";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { getDictionary } from "@/lib/dictionaries";
 import { GlassInput } from "@/components/ui/glass-input";
 import { CodeBlock } from "@/components/ui/code-block";
 import { NeonBadge } from "@/components/ui/neon-badge";
 
-const sourceCode = `"use client";
-
-import * as React from "react";
-import { cn } from "@/lib/utils";
-
-export interface GlassInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  icon?: React.ReactNode;
-}
-
-/**
- * GlassInput Component
- * Input limpo com fundo opaco e um anel de brilho (ring glow) ativado apenas no foco.
- */
-export const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
-  ({ className, type, icon, ...props }, ref) => {
-    return (
-      <div className="relative flex items-center w-full">
-        {icon && (
-          <div className="absolute left-3 text-muted-foreground">
-            {icon}
-          </div>
-        )}
-        <input
-          type={type}
-          className={cn(
-            "flex h-11 w-full rounded-xl border border-border/50 bg-background/40 backdrop-blur-md px-3 py-2 text-sm text-foreground shadow-sm transition-all duration-300 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-transparent focus-visible:shadow-[0_0_15px_rgba(16,185,129,0.2)] disabled:cursor-not-allowed disabled:opacity-50",
-            icon && "pl-10",
-            className
-          )}
-          ref={ref}
-          {...props}
-        />
-      </div>
-    );
-  }
-);
-
-GlassInput.displayName = "GlassInput";`;
-
-export default function GlassInputPage() {
-  const { lang } = useParams() as { lang: string };
-  const dict = getDictionary(lang);
+export default async function GlassInputPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+  const sourceCode = readFileSync(join(process.cwd(), "src/components/ui/glass-input.tsx"), "utf-8");
 
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-3">
            <h1 className="text-4xl font-bold tracking-tight">{dict.components.glassInput.title}</h1>
-           <NeonBadge variant="primary" pulse={false}>{dict.components.glassInput.badge}</NeonBadge>
+           <NeonBadge variant="secondary" pulse={false}>{dict.components.glassInput.badge}</NeonBadge>
         </div>
         <p className="text-xl text-muted-foreground w-full max-w-xl">
           {dict.components.glassInput.description}
@@ -63,10 +24,10 @@ export default function GlassInputPage() {
 
       <div className="flex flex-col gap-4">
         <h3 className="text-lg font-semibold border-b border-border/40 pb-2">{dict.common.previewTitle}</h3>
-        <div className="min-h-[250px] rounded-2xl border border-border/50 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px] flex items-center justify-center p-8">
+        <div className="min-h-[250px] rounded-2xl border border-border/50 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px] flex flex-col gap-6 items-center justify-center p-12">
           <div className="w-full max-w-sm flex flex-col gap-4">
-             <GlassInput placeholder={dict.components.glassInput.preview1} />
-             <GlassInput disabled placeholder={dict.components.glassInput.preview2} />
+            <GlassInput label={dict.components.glassInput.preview1} placeholder="johndoe@example.com" />
+            <GlassInput label={dict.components.glassInput.preview2} type="password" placeholder="••••••••" />
           </div>
         </div>
       </div>

@@ -21,10 +21,10 @@ export function Navbar({ dict, currentLang = "en" }: { dict?: Dictionary, curren
   };
 
   const navLinks = [
-    { name: dict?.nav.docs || "Documentation", href: `/${currentLang}/components/documentation` },
-    { name: dict?.nav.install || "Installation", href: `/${currentLang}/components/installation` },
-    { name: dict?.nav.components || "Components", href: `/${currentLang}/components` },
-    { name: dict?.nav.showcase || "Showcase", href: `/${currentLang}/components/bento-grid` },
+    { name: dict?.nav?.docs || "Documentation", href: `/${currentLang}/components/documentation` },
+    { name: dict?.nav?.install || "Installation", href: `/${currentLang}/components/installation` },
+    { name: dict?.nav?.components || "Components", href: `/${currentLang}/components` },
+    { name: dict?.nav?.showcase || "Showcase", href: `/${currentLang}/components/bento-grid` },
   ];
 
   return (
@@ -98,7 +98,7 @@ export function Navbar({ dict, currentLang = "en" }: { dict?: Dictionary, curren
             <span className="sr-only">GitHub</span>
           </Link>
           <Link href={`/${currentLang}/components`} className="hidden sm:inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md bg-foreground text-background hover:bg-muted-foreground transition-colors shadow-sm">
-            {dict?.nav.getStarted || "Get Started"}
+            {dict?.nav?.getStarted || "Get Started"}
           </Link>
         </div>
 

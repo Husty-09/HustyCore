@@ -1,53 +1,61 @@
 # HustyCore | Premium UI Library
 
-## O Problema Real
-No desenvolvimento moderno de interfaces, engenheiros de front-end frequentemente se deparam com a dolorosa necessidade de reinventar a roda. Criação de componentes visuais complexos — repletos de micro-interações físicas elásticas, transições de estado e refrações com desfoque de fundo (*glassmorphism*) — consome dezenas de horas preciosas que deveriam ser alocadas para regras de negócio fundamentais. Além disso, a manutenção e acessibilidade de elementos sobrepostos costuma se transformar em um emaranhado difícil de refatorar.
+![Next.js](https://img.shields.io/badge/Next.js-15%2B-black?style=flat&logo=next.js)
+![React](https://img.shields.io/badge/React-18%2B-blue?style=flat&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?style=flat&logo=typescript)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat)
 
-## A Solução
-O **HustyCore** nasce como um acelerador de *Time-to-Market*. Nós disponibilizamos uma suíte comissionada de componentes Premium já montados, agnósticos, escaláveis e completamente performáticos, pensados em 60 frames por segundo. A filosofia de uso é livre de *vendor lock-in*: basta copiar a receita do bloco de interface, colar diretamente em seu projeto e alterar livremente pois todo controle lógico estará nativamente presente na sua pasta. De Animações de Malha (Grid), Cartões Magnéticos, até caixas modais flutuantes com interpolação de molas.
+> 🌍 [Leia esta documentação em Português](./README.pt-BR.md)
 
-## Tecnologias e Arquitetura
-Este projeto foi rigorosamente arquiteto sobre pilares sólidos de engenharia de software atual:
-- **[Next.js 16](https://nextjs.org/)** — Runtime hibrido estático e servidor (App Router).
-- **[TypeScript](https://www.typescriptlang.org/)** — Rigidez de modelagem e prevenção de erros dinâmicos.
-- **[Tailwind CSS](https://tailwindcss.com/)** — Engine utilitária veloz de styling e padronização.
-- **[Framer Motion](https://www.framer.com/motion/)** — Orquestração de animações orgânicas (Física *Spring*).
-- **[Vitest](https://vitest.dev/)** — Pipeline purista para cobertura de Testes Unitários de alta velocidade.
+HustyCore is an open-source library of **premium, highly interactive components** built for the modern web. Focused on performance, accessibility, and frictionless integration, it provides "Copy & Paste" blocks designed with fluid `framer-motion` physics and Tailwind CSS.
+
+## 🚀 The Solution
+HustyCore is a **Time-to-Market accelerator**. We provide a curated suite of premium UI blocks—from Animated Grids and Magnetic Cards to Spring-interpolated Modals—ready to be dropped into your project.
+- **Zero-DB Philosophy**: Completely backend-agnostic. No database lock-in.
+- **Atomic Blocks**: Purely visual, highly performant components.
+- **Methodology**: Copy the recipe, paste the code. You own your code.
+
+## 🛠️ Tech Stack
+- **Next.js 15+** (App Router)
+- **TypeScript** (Strict mode)
+- **Tailwind CSS** (Utility-first styling)
+- **Framer Motion** (Spring-based physics)
+- **Vitest** (Unit testing suite)
 
 ---
 
-## Primeiros Passos
+## 📚 Documentation
+Explore our specialized guides for detailed technical information:
+- [**Installation Guide**](./docs/INSTALLATION.md) — How to setup tokens and utilities.
+- [**Styling & Design**](./docs/STYLING_GUIDE.md) — Understanding Glassmorphism and Neon tokens.
+- [**Architecture & Philosophy**](./docs/ARCHITECTURE.md) — Performance metrics and Zero-DB rules.
 
-### Instalação
-Faça a inicialização com a base do projeto clonando o repositório:
+## ⚡ Quickstart
+
+### 1. Installation
+Clone the repository and install dependencies:
 ```bash
-git clone https://github.com/SeuWorkspace/HustyCore.git
+git clone https://github.com/MatheusCalonico/HustyCore.git
 cd HustyCore
 npm install --legacy-peer-deps
 ```
 
-### Execução Local
-Levante o seu ambiente de desenvolvimento e Showcase em porta local:
+### 2. Run Local Showcase
 ```bash
 npm run dev
 ```
 
-### Testes Automatizados (Vitest)
-As rotinas de teste da biblioteca verificam injunções do Tailwind, merge de classes limpas e validações condicionais visuais de falses/nulls. Execute:
+### 3. Running Tests
 ```bash
-# Para varrer o Test Suite em modo de single-run (Padrão para CI)
-npm run test
-
-# Para visualizar e observar mudanças em tempo real no terminal
-npm run test:watch
-```
-
-### Garantia de Qualidade (Linting)
-Garantimos a estilização estruturada dos artefatos:
-```bash
-npm run lint
+npm run test        # Single run
+npm run test:watch  # Development mode
 ```
 
 ---
 
-Copyright © 2026 Matheus Calonico. Todos os direitos reservados.
+## 🤖 DevOps Automation
+This project uses **Conventional Commits** and **SemVer**. 
+- To propose a change: `git commit -m "feat: your feature"`
+- To release a new version: `npm run release` (this updates CHANGELOG.md and bumps package.json version).
+
+Copyright © 2026 Matheus Calonico. All rights reserved. See the [LICENSE](./LICENSE) file for details.

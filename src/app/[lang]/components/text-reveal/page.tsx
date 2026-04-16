@@ -1,57 +1,14 @@
-"use client";
-
-import { useParams } from "next/navigation";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { getDictionary } from "@/lib/dictionaries";
 import { TextReveal as TextRevealUI } from "@/components/ui/text-reveal";
 import { CodeBlock } from "@/components/ui/code-block";
 import { NeonBadge } from "@/components/ui/neon-badge";
 
-const sourceCode = `"use client";
-
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-
-interface TextRevealProps {
-  text: string;
-  className?: string;
-}
-
-export const TextReveal = ({ text, className }: TextRevealProps) => {
-  const words = text.split(" ");
-
-  const container = {
-    hidden: { opacity: 0 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 0.04 * i },
-    }),
-  };
-
-  const child = {
-    visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { type: "spring", damping: 12, stiffness: 100 } },
-    hidden: { opacity: 0, y: 20, filter: "blur(10px)", transition: { type: "spring", damping: 12, stiffness: 100 } },
-  };
-
-  return (
-    <motion.div
-      variants={container}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      className={cn("flex flex-wrap gap-x-2", className)}
-    >
-      {words.map((word, index) => (
-        <motion.span variants={child} key={index} className="inline-block relative">
-          {word}
-        </motion.span>
-      ))}
-    </motion.div>
-  );
-};`;
-
-export default function TextRevealPage() {
-  const { lang } = useParams() as { lang: string };
-  const dict = getDictionary(lang);
+export default async function TextRevealPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+  const sourceCode = readFileSync(join(process.cwd(), "src/components/ui/text-reveal.tsx"), "utf-8");
 
   return (
     <div className="flex flex-col gap-10">
@@ -61,19 +18,20 @@ export default function TextRevealPage() {
            <NeonBadge variant="primary" pulse={false}>{dict.components.textReveal.badge}</NeonBadge>
         </div>
         <p className="text-xl text-muted-foreground w-full max-w-xl">
-           {dict.components.textReveal.description}
+          {dict.components.textReveal.description}
         </p>
       </div>
 
       <div className="flex flex-col gap-4">
         <h3 className="text-lg font-semibold border-b border-border/40 pb-2">{dict.common.previewTitle}</h3>
-        <div className="min-h-[400px] w-full max-w-4xl rounded-2xl border border-border/50 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px] overflow-hidden flex relative items-center justify-center p-8">
-           
-           <div className="max-w-2xl text-center flex flex-col items-center">
-             <TextRevealUI text={dict.components.textReveal.previewTitle} className="text-5xl font-black text-foreground mb-6 justify-center" />
-             <TextRevealUI text={dict.components.textReveal.previewDesc} className="text-xl text-muted-foreground justify-center" />
+        <div className="flex flex-col items-center justify-center gap-8 w-full">
+           <div className="w-full text-center py-10 bg-secondary/5 rounded-2xl border border-border/40">
+              <h2 className="text-2xl font-bold">{dict.components.textReveal.previewTitle}</h2>
+              <p className="text-muted-foreground">{dict.components.textReveal.previewDesc}</p>
+              <div className="mt-4 animate-bounce text-primary">↓ Scroll Down ↓</div>
            </div>
-
+           
+           <TextRevealUI text="HustyCore transforms your entire visual environment Delivering deep engagement that magnetizes clients and converts views into premium loyalty. This is the new standard of interface engineering." />
         </div>
       </div>
 
