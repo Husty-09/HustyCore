@@ -17,8 +17,7 @@ export interface BentoItemProps extends Omit<React.HTMLAttributes<HTMLDivElement
 }
 
 /**
- * BentoGrid Wrapper
- * Organiza elementos num layout assimétrico nativo via display:grid com colunas auto-adaptáveis.
+ * BentoGrid — asymmetric grid layout wrapper using CSS Grid with auto rows.
  */
 export const BentoGrid = ({ className, children, ...props }: BentoGridProps) => {
   return (
@@ -35,8 +34,7 @@ export const BentoGrid = ({ className, children, ...props }: BentoGridProps) => 
 };
 
 /**
- * BentoItem Element
- * Um bloco Glassmórfico Premium otimizado para o grid.
+ * BentoItem — glassmorphic card block, optimized for BentoGrid.
  */
 export const BentoItem = ({
   className,
@@ -57,17 +55,17 @@ export const BentoItem = ({
       )}
       {...props}
     >
-      {/* Spotlight Effect - Subtle glow that follows the gradient logic */}
+      {/* Hover spotlight gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.08] via-transparent to-transparent opacity-0 group-hover/bento:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-      {/* Header Container with Zoom Effect */}
+      {/* Header with zoom-on-hover effect */}
       <div className="flex-1 w-full h-full min-h-[8rem] mb-4 rounded-2xl overflow-hidden relative">
         <div className="absolute inset-0 w-full h-full transition-transform duration-500 ease-out group-hover/bento:scale-110">
           {header}
         </div>
       </div>
       
-      {/* Content Section */}
+      {/* Content section */}
       <div className="flex flex-col gap-2 transition-transform duration-500 ease-out group-hover/bento:-translate-y-1 relative z-10">
         {icon && (
           <div className="text-foreground/80">

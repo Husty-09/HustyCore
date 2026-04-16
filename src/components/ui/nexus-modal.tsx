@@ -12,37 +12,28 @@ export interface NexusModalProps {
 }
 
 /**
- * NexusModal Component
- * Usa AnimatePresence para renderizar e remover com suavidade um modal suspenso
- * com blur total de fundo. Acompanha botão Fechar (X) e click-out para fechar.
- *
- * ── Portal ──────────────────────────────────────────────────────────────────
- * Renderizado via createPortal no document.body para garantir que `position: fixed`
- * seja relativo ao viewport. Sem isso, parents com `transform` (Framer Motion)
- * contêm o fixed element dentro deles, tornando o modal invisível ou mal posicionado.
+ * NexusModal — animated dialog rendered via React Portal.
+ * Blurs the background and prevents body scroll while open.
+ * Close by clicking the backdrop or the × button.
  */
 export function NexusModal({ isOpen, onClose, title, children }: NexusModalProps) {
   const shouldReduceMotion = useReducedMotion();
   const closeButtonRef = React.useRef<HTMLButtonElement>(null);
 
-  // Controla montagem do portal (necessário para SSR — document não existe no servidor)
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => { setMounted(true); }, []);
 
-  // Trava scroll do body quando o modal está aberto
   React.useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
-  // Foca o botão de fechar
   React.useEffect(() => {
     if (isOpen && closeButtonRef.current) {
       closeButtonRef.current.focus({ preventScroll: true });
     }
   }, [isOpen]);
 
-  // Aguarda montagem client-side antes de criar o portal
   if (!mounted) return null;
 
   return createPortal(
@@ -54,16 +45,15 @@ export function NexusModal({ isOpen, onClose, title, children }: NexusModalProps
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
-          // z-[9999] garante que fica acima de qualquer elemento do layout
           className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
         >
-          {/* Backdrop: fecha ao clicar fora */}
+
           <div
             className="absolute inset-0 bg-black/70 backdrop-blur-sm"
             onClick={onClose}
           />
 
-          {/* Painel do Modal */}
+          {/* Modal Panel */}
           <motion.div
             key="modalContent"
             role="dialog"
@@ -77,11 +67,10 @@ export function NexusModal({ isOpen, onClose, title, children }: NexusModalProps
                 ? { duration: 0.15, ease: "easeOut" }
                 : { type: "spring", damping: 25, stiffness: 300, delay: 0.05 }
             }
-            // `relative z-10` eleva o painel acima do backdrop absoluto
             className="relative z-10 w-full max-w-lg overflow-hidden rounded-2xl border border-glass-border bg-glass backdrop-blur-md shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Botão de Fechar */}
+
             <button
               ref={closeButtonRef}
               onClick={onClose}

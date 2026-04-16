@@ -9,9 +9,8 @@ export interface GlassCardProps extends Omit<HTMLMotionProps<"div">, "children">
 }
 
 /**
- * GlassCard Component
- * Uma surface primária baseada em glassmorphism (translucidez e desfoque),
- * perfeita para apresentar elementos flutuantes sobre o fundo da aplicação.
+ * GlassCard — glassmorphism surface card with spring hover animation.
+ * Ideal for floating elements over the app background.
  */
 export const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
   ({ className, children, ...props }, ref) => {
@@ -28,7 +27,7 @@ export const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
         )}
         {...props}
       >
-        {/* Efeito sútil de gradiente interno simulando a reflexão do vidro */}
+        {/* Subtle gradient simulating internal glass reflection */}
         <div className="absolute inset-0 bg-gradient-to-br from-glass-hover to-transparent pointer-events-none -z-10" />
         {children}
       </motion.div>

@@ -11,9 +11,8 @@ export interface GlowBorderProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * Glow Border Container
- * Um wrapper poderoso que insere fita de borda giratória luminosa no contêiner interno.
- * Excelente para "Planos Premium" e Cards de Destaque.
+ * GlowBorder — wrapper that renders a spinning conic gradient border.
+ * Great for premium plan cards and featured highlights.
  */
 export function GlowBorder({
   children,
@@ -35,7 +34,7 @@ export function GlowBorder({
       style={{ padding: borderWidth }}
       {...props}
     >
-      {/* Elemento de laser rotativo */}
+      {/* Spinning conic gradient layer */}
       <div
         className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite]"
         style={{
@@ -44,7 +43,7 @@ export function GlowBorder({
           )})`,
         }}
       />
-      {/* Container Ocultante */}
+      {/* Inner clipping container */}
       <div
         className={cn(
           "relative h-full w-full rounded-[calc(1rem-2px)] bg-background",

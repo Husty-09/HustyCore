@@ -9,64 +9,47 @@ export interface GlassInputProps extends React.InputHTMLAttributes<HTMLInputElem
 }
 
 /**
- * GlassInput Component
- * Input com efeito Glassmorphism (translúcido real) e anel de brilho no foco.
+ * GlassInput — translucent input with a glowing focus ring.
+ * Pass an `id` prop alongside `label` to ensure proper accessibility binding.
  */
 export const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
   ({ className, type, icon, label, ...props }, ref) => {
     return (
       <div className="w-full space-y-2">
-      {label && (
-        // CORREÇÃO A11y: htmlFor associa o label ao input pelo id
-        // Sem isso, um clique no label não focava o input e screen readers perdiam o contexto
-        <label
-          htmlFor={props.id}
-          className="text-sm font-medium ml-1 text-muted-foreground"
-        >
-          {label}
-        </label>
-      )}
-        <div className="relative flex items-center w-full">
-        {icon && (
-          <div className="absolute left-3 text-muted-foreground z-10">
-            {icon}
-          </div>
+        {label && (
+          <label
+            htmlFor={props.id}
+            className="text-sm font-medium ml-1 text-muted-foreground"
+          >
+            {label}
+          </label>
         )}
-        <input
-          type={type}
-          className={cn(
-            // 1. Estrutura base
-            "flex h-11 w-full rounded-xl px-3 py-2 text-sm shadow-sm transition-all duration-300",
-            
-            // 2. O Segredo do Vidro (Background + Blur)
-            // Aumentamos a opacidade do fundo para 20% no tema claro e 10% no escuro
-            "bg-glass-input",
-            // Aplicamos um desfoque maior para o fundo não brigar com o texto digitado
-            "backdrop-blur-lg", 
-            
-            // 3. Bordas do Vidro (Dão o contorno de brilho)
-            "border border-glass-input-border",
-            
-            // 4. Texto e Placeholders (Totalmente opacos)
-            "text-foreground placeholder:text-foreground/60",
-            
-            // 5. Estados de Foco e Disabled (Mantidos do seu código original)
-            "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-transparent focus-visible:shadow-[0_0_15px_rgba(16,185,129,0.2)]",
-            "disabled:cursor-not-allowed disabled:opacity-50",
-            "file:border-0 file:bg-transparent file:text-sm file:font-medium",
-            
-            // Ajuste de padding se tiver ícone
-            icon && "pl-10",
-            className
+        <div className="relative flex items-center w-full">
+          {icon && (
+            <div className="absolute left-3 text-muted-foreground z-10">
+              {icon}
+            </div>
           )}
-          ref={ref}
-          {...props}
-        />
+          <input
+            type={type}
+            className={cn(
+              "flex h-11 w-full rounded-xl px-3 py-2 text-sm shadow-sm transition-all duration-300",
+              "bg-glass-input backdrop-blur-lg",
+              "border border-glass-input-border",
+              "text-foreground placeholder:text-foreground/60",
+              "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-transparent focus-visible:shadow-[0_0_15px_rgba(16,185,129,0.2)]",
+              "disabled:cursor-not-allowed disabled:opacity-50",
+              "file:border-0 file:bg-transparent file:text-sm file:font-medium",
+              icon && "pl-10",
+              className
+            )}
+            ref={ref}
+            {...props}
+          />
         </div>
       </div>
     );
   }
 );
-
 
 GlassInput.displayName = "GlassInput";

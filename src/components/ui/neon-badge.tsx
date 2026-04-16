@@ -11,8 +11,8 @@ export interface NeonBadgeProps extends HTMLMotionProps<"div"> {
 }
 
 /**
- * NeonBadge Component
- * Badges estilizadas para destacar features, novidades ou tags com um sútil neon glow.
+ * NeonBadge — small pill badge with a neon glow effect.
+ * Use `pulse` to show an animated dot indicator.
  */
 export const NeonBadge = React.forwardRef<HTMLDivElement, NeonBadgeProps>(
   ({ className, variant = "primary", pulse = true, children, ...props }, ref) => {

@@ -17,7 +17,7 @@ export function CodeBlock({ code, language = "tsx", className }: CodeBlockProps)
     try {
       await navigator.clipboard.writeText(code);
       setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000); // Reseta após 2s
+      setTimeout(() => setIsCopied(false), 2000); // Reset after 2s
     } catch (err) {
       console.error("Failed to copy text: ", err);
     }
@@ -33,7 +33,7 @@ export function CodeBlock({ code, language = "tsx", className }: CodeBlockProps)
         <button
           onClick={handleCopy}
           className="flex items-center justify-center p-1.5 transition-colors hover:bg-glass-input rounded-md text-muted-foreground"
-          aria-label="Copiar código"
+          aria-label="Copy code"
         >
           {isCopied ? (
             <motion.svg

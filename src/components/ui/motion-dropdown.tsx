@@ -18,8 +18,8 @@ export interface MotionDropdownProps {
 }
 
 /**
- * MotionDropdown Component
- * Dropdown elegante que desliza via spring physic, servindo para inputs ou seleções curtas.
+ * MotionDropdown — elegant spring-animated dropdown for short selections or inputs.
+ * Closes on outside click or Escape key.
  */
 export function MotionDropdown({ label, items, children, className }: MotionDropdownProps) {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -32,7 +32,6 @@ export function MotionDropdown({ label, items, children, className }: MotionDrop
         setIsOpen(false);
       }
     };
-    // CORREÇÃO A11y: fecha dropdown com Escape (WCAG 1.4.13)
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIsOpen(false);
     };
@@ -49,7 +48,6 @@ export function MotionDropdown({ label, items, children, className }: MotionDrop
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        // CORREÇÃO A11y: informa screen readers sobre o estado e tipo do popup
         aria-expanded={isOpen}
         aria-haspopup="listbox"
         className="inline-flex items-center justify-between w-full sm:w-48 px-4 py-2.5 rounded-xl border border-border/50 bg-background/40 backdrop-blur-md shadow-sm text-sm font-medium hover:bg-muted/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"

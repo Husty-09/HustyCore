@@ -17,23 +17,19 @@ export interface GlareCardProps extends HTMLMotionProps<"div"> {
 }
 
 /**
- * GlareCard Component
- * Rastrea o mouse para inclinar o card via física de mola (Spring) em 3D,
- * e gera um gradiente responsivo que atua como luz "reflexiva".
+ * GlareCard — 3D tilt card with dynamic glare effect.
+ * Tracks mouse position to rotate via spring physics and projects
+ * a radial glow gradient that follows the cursor.
  */
 export const GlareCard = ({ className, children, ...props }: GlareCardProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
-  // ── Pixel offsets para o gradiente de glare ─────────────────────────────
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const mouseXSpring = useSpring(mouseX, { stiffness: 300, damping: 30 });
   const mouseYSpring = useSpring(mouseY, { stiffness: 300, damping: 30 });
 
-  // ── Ângulos de rotação (em graus) ────────────────────────────────────────
-  // FIX: Usar MotionValues diretamente para rotação evita o bug do useTransform
-  // que captura dimensões = 0 no momento da renderização inicial (stale ref).
   const rotateXVal = useMotionValue(0);
   const rotateYVal = useMotionValue(0);
   const rotateXSpring = useSpring(rotateXVal, { stiffness: 300, damping: 30 });
@@ -42,16 +38,10 @@ export const GlareCard = ({ className, children, ...props }: GlareCardProps) => 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
-
-    // Normaliza para -0.5…+0.5 relativo ao tamanho real do card
     const nx = (e.clientX - rect.left) / rect.width - 0.5;
     const ny = (e.clientY - rect.top) / rect.height - 0.5;
-
-    // Rotação: ±15° dependendo da posição normalizada
     rotateXVal.set(-ny * 15);
     rotateYVal.set(nx * 15);
-
-    // Offset de pixel para o gradiente radial de glare
     mouseX.set(e.clientX - rect.left - rect.width / 2);
     mouseY.set(e.clientY - rect.top - rect.height / 2);
   }
@@ -79,7 +69,6 @@ export const GlareCard = ({ className, children, ...props }: GlareCardProps) => 
       )}
       {...props}
     >
-      {/* Glare Mask: gradiente radial que segue o mouse */}
       <motion.div
         className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover/card:opacity-100 transition duration-500 -z-10"
         style={{
@@ -92,10 +81,7 @@ export const GlareCard = ({ className, children, ...props }: GlareCardProps) => 
           `,
         }}
       />
-      {/* Filtro escuro de fundo para legibilidade */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 -z-20 pointer-events-none" />
-
-      {/* Conteúdo com profundidade (pop-out effect) */}
       <div
         style={{ transform: shouldReduceMotion ? "translateZ(0px)" : "translateZ(50px)" }}
         className="w-full h-full p-6 flex flex-col"
