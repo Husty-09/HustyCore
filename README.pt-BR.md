@@ -53,9 +53,4 @@ npm run test:watch  # Modo desenvolvimento
 
 ---
 
-## 🤖 Automação DevOps
-Este projeto utiliza **Conventional Commits** e versonamento semântico (**SemVer**).
-- Para sugerir mudanças: `git commit -m "feat: sua funcionalidade"`
-- Para realizar um release: `npm run release` (isso atualizará o CHANGELOG.md e a versão no package.json automaticamente).
-
 Copyright © 2026 Matheus Calonico. Todos os direitos reservados. Veja o arquivo [LICENSE](./LICENSE) para detalhes.
