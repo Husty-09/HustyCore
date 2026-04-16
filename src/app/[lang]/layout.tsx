@@ -3,6 +3,7 @@ import "../globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layout/Navbar";
 import { getDictionary } from "@/lib/dictionaries";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "HustyCore | Premium UI Library",
@@ -26,6 +27,7 @@ export default async function RootLayout({
       )}>
         <Navbar dict={dict} currentLang={lang} />
         {children}
+        <Analytics />
       </body>
     </html>
   );
