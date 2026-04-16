@@ -1,24 +1,24 @@
-# Installation Guide
+# Guia de Instalação
 
-> 🌍 [Leia este guia em Português](./INSTALLATION.pt-BR.md)
+> 🌍 [Read this guide in English](./INSTALLATION.md)
 
-Follow these steps to integrate HustyCore into your existing Next.js + Tailwind project.
+Siga estes passos para integrar o HustyCore ao seu projeto Next.js + Tailwind existente.
 
-## 1. Base Requirements
-Ensure you have the following versions:
+## 1. Requisitos Base
+Certifique-se de ter as seguintes versões:
 - **Node.js**: 18.17+
 - **Next.js**: 14+ (App Router)
 - **Tailwind CSS**: 3.4+
 
-## 2. Install Core Dependencies
-HustyCore relies on `framer-motion` for animations and structural utilities for class merging.
+## 2. Instalar Dependências Principais
+O HustyCore depende do `framer-motion` para animações e utilitários estruturais para mesclagem de classes.
 
 ```bash
 npm install framer-motion clsx tailwind-merge --legacy-peer-deps
 ```
 
-## 3. Setup the Style Utility
-Create `src/lib/utils.ts` and add the standard `cn` helper for dynamic class management:
+## 3. Configurar o Utilitário de Estilo
+Crie `src/lib/utils.ts` e adicione o helper padrão `cn` para gerenciamento dinâmico de classes:
 
 ```typescript
 import { type ClassValue, clsx } from "clsx";
@@ -29,8 +29,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 ```
 
-## 4. Configure Tailwind Tokens
-Add the glassmorphism and neon tokens to your `tailwind.config.ts`:
+## 4. Configurar os Tokens do Tailwind
+Adicione os tokens de glassmorphism e neon ao seu `tailwind.config.ts`:
 
 ```typescript
 // tailwind.config.ts
@@ -48,22 +48,22 @@ const config = {
       },
       boxShadow: {
         glass: "var(--glass-shadow)",
-        "glass-hover: "var(--glass-shadow-hover)",
+        "glass-hover": "var(--glass-shadow-hover)",
       }
     }
   }
 }
 ```
 
-## 5. Global Variables
-Apply the variables in your `src/app/globals.css`:
+## 5. Variáveis Globais
+Aplique as variáveis no seu `src/app/globals.css`:
 
 ```css
 @layer base {
   :root {
     --glass: rgba(255, 255, 255, 0.01);
     --glass-border: rgba(255, 255, 255, 0.05);
-    /* ... more in docs/STYLING_GUIDE.md */
+    /* ... mais detalhes em docs/STYLING_GUIDE.pt-BR.md */
   }
 }
 ```

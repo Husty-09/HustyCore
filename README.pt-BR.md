@@ -26,9 +26,9 @@ O HustyCore nasce como um **acelerador de Time-to-Market**. Nós disponibilizamo
 
 ## 📚 Documentação Especializada
 Explore nossos guias detalhados para informações técnicas aprofundadas:
-- [**Guia de Instalação**](./docs/INSTALLATION.md) — Como configurar tokens e utilitários.
-- [**Estilo & Design**](./docs/STYLING_GUIDE.md) — Entenda Glassmorphism e os tokens de Neon.
-- [**Arquitetura & Filosofia**](./docs/ARCHITECTURE.md) — Métricas de performance e regras Zero-DB.
+- [**Guia de Instalação**](./docs/INSTALLATION.pt-BR.md) — Como configurar tokens e utilitários.
+- [**Estilo & Design**](./docs/STYLING_GUIDE.pt-BR.md) — Entenda Glassmorphism e os tokens de Neon.
+- [**Arquitetura & Filosofia**](./docs/ARCHITECTURE.pt-BR.md) — Métricas de performance e regras Zero-DB.
 
 ## ⚡ Início Rápido
 

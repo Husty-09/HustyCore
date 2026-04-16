@@ -1,5 +1,7 @@
 # Architectural Philosophy: HustyCore
 
+> 🌍 [Leia este guia em Português](./ARCHITECTURE.pt-BR.md)
+
 HustyCore is engineered for front-end engineers who value **Zero-DB** freedom and atomic UI control.
 
 ## 1. Zero-DB Philosophy

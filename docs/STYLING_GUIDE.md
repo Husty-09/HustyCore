@@ -1,5 +1,7 @@
 # Styling Guide: Glass & Neon
 
+> 🌍 [Leia este guia em Português](./STYLING_GUIDE.pt-BR.md)
+
 HustyCore is built on the intersection of **Glassmorphism** and **Dynamic Glows**.
 
 ## 1. The Glass System
