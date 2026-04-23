@@ -1,12 +1,10 @@
 import { render, waitFor } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { AnimatedGrid } from "./animated-grid";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import axe from "axe-core";
+import { AnimatedGrid } from "../animated-grid";
 
-// Mocks Math.random to produce deterministic values, preventing flakiness in position assertions
-beforeEach(() => {
-  let callCount = 0;
-  vi.spyOn(Math, "random").mockImplementation(() => (callCount++ % 10) / 10);
-  return () => vi.restoreAllMocks();
+afterEach(() => {
+  vi.restoreAllMocks();
 });
 
 // ─── Suite: Structure ─────────────────────────────────────────────────────────
@@ -16,6 +14,12 @@ describe("AnimatedGrid — Structure", () => {
     const svg = container.querySelector("svg");
     expect(svg).toBeInTheDocument();
     expect(svg).toHaveAttribute("aria-hidden", "true");
+  });
+
+  it("forwards ref to the root SVG element", () => {
+    const ref = vi.fn();
+    render(<AnimatedGrid ref={ref} />);
+    expect(ref).toHaveBeenCalledWith(expect.any(SVGSVGElement));
   });
 
   it("applies a custom className to the root SVG element", () => {
@@ -40,6 +44,11 @@ describe("AnimatedGrid — Structure", () => {
 // Squares are generated asynchronously inside useEffect.
 // Without `waitFor`, tests would pass even if the effect never ran (false positive).
 describe("AnimatedGrid — Dynamic Behavior", () => {
+  beforeEach(() => {
+    let callCount = 0;
+    vi.spyOn(Math, "random").mockImplementation(() => (callCount++ % 10) / 10);
+  });
+
   it("generates exactly `numSquares` rect elements after mount", async () => {
     const { container } = render(<AnimatedGrid numSquares={7} />);
 
@@ -85,6 +94,7 @@ describe("AnimatedGrid — Dynamic Behavior", () => {
       });
     });
   });
+
 });
 
 // ─── Suite: Styles and Classes ────────────────────────────────────────────────
@@ -102,7 +112,7 @@ describe("AnimatedGrid — Styles and Classes", () => {
 
     await waitFor(() => {
       const rect = container.querySelector("svg svg rect");
-      // JSDOM serializes the JSX prop `strokeWidth` as the SVG attribute `stroke-width` (lowercase)
+      // JSDOM serializes JSX prop `strokeWidth` as SVG attribute `stroke-width`
       expect(rect).toHaveAttribute("stroke-width", "0");
     });
   });
@@ -114,5 +124,14 @@ describe("AnimatedGrid — Styles and Classes", () => {
       const innerSvg = container.querySelector("svg svg");
       expect(innerSvg).toHaveClass("overflow-visible");
     });
+  });
+});
+
+// ─── Suite: A11y ──────────────────────────────────────────────────────────────
+describe("AnimatedGrid — A11y", () => {
+  it("has no violations", async () => {
+    const { container } = render(<AnimatedGrid />);
+    const results = await axe.run(container);
+    expect(results.violations).toHaveLength(0);
   });
 });
