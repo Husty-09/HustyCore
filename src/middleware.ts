@@ -5,7 +5,6 @@ const locales = ['en', 'pt'];
 const defaultLocale = 'en';
 
 function getLocale(request: NextRequest) {
-  // Reads the native Accept-Language request header
   const acceptLanguage = request.headers.get('accept-language');
   if (acceptLanguage) {
     if (acceptLanguage.includes('pt')) return 'pt';
@@ -13,10 +12,9 @@ function getLocale(request: NextRequest) {
   return defaultLocale;
 }
 
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Skip Next.js internals, API routes and static files
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
@@ -31,7 +29,6 @@ export function proxy(request: NextRequest) {
 
   if (pathnameHasLocale) return NextResponse.next();
 
-  // Redirect to the detected locale when none is present in the path
   const locale = getLocale(request);
   request.nextUrl.pathname = `/${locale}${pathname}`;
   return NextResponse.redirect(request.nextUrl);
@@ -39,7 +36,6 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Match all routes except system files
     '/((?!api|_next/static|_next/image|favicon.ico).*)',
   ],
 };
