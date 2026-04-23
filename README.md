@@ -3,7 +3,7 @@
 ![Next.js](https://img.shields.io/badge/Next.js-15%2B-black?style=flat&logo=next.js)
 ![React](https://img.shields.io/badge/React-18%2B-blue?style=flat&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?style=flat&logo=typescript)
-![License](https://img.shields.io/badge/License-Dual--License-blue?style=flat)
+[![License](https://img.shields.io/badge/License-Dual--License-orange?style=flat)](LICENSE)
 
 > 🌍 [Leia esta documentação em Português](./README.pt-BR.md)
 
