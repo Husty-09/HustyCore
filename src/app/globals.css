@@ -124,7 +124,8 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-pulse,
   .animate-marquee,
-  .animate-marquee-vertical {
+  .animate-marquee-vertical,
+  .animate-aurora {
     animation: none !important;
   }
 }

@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useId, useEffect, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 
 export interface AnimatedGridProps extends React.SVGProps<SVGSVGElement> {
   width?: number;
@@ -22,18 +23,20 @@ export function AnimatedGrid({
   ...props
 }: AnimatedGridProps) {
   const id = useId();
+  const shouldReduceMotion = useReducedMotion();
   const [squares, setSquares] = useState<Array<[number, number, number, number]>>([]);
 
   useEffect(() => {
+    if (shouldReduceMotion) return;
     const generated = Array.from({ length: numSquares }).map(() => [
       Math.floor(Math.random() * 100) * width + 1,
       Math.floor(Math.random() * 100) * height + 1,
       Math.random() * 10,
       Math.random() * 10 + 5,
     ] as [number, number, number, number]);
-    
+
     setSquares(generated);
-  }, [numSquares, width, height]);
+  }, [numSquares, width, height, shouldReduceMotion]);
 
   return (
     <svg

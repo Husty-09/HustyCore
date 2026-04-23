@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import React, { ReactNode } from "react";
+import { useReducedMotion } from "framer-motion";
 
 interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
   children: ReactNode;
@@ -14,6 +15,8 @@ export const AuroraBackground = ({
   showRadialGradient = true,
   ...props
 }: AuroraBackgroundProps) => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div
       className={cn(
@@ -28,7 +31,8 @@ export const AuroraBackground = ({
             "filter blur-[10px] sm:blur-[25px] xl:blur-[50px] opacity-40 will-change-transform",
             "absolute -inset-[10%] opacity-50",
             showRadialGradient && "[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,transparent_70%)]",
-            "after:content-[''] after:absolute after:inset-0 after:[background-image:var(--white-gradient),var(--aurora)] after:[background-size:200%,_100%] after:animate-aurora after:[background-attachment:fixed] after:mix-blend-difference"
+            "after:content-[''] after:absolute after:inset-0 after:[background-image:var(--white-gradient),var(--aurora)] after:[background-size:200%,_100%] after:[background-attachment:fixed] after:mix-blend-difference",
+            !shouldReduceMotion && "after:animate-aurora"
           )}
           style={{
             "--white-gradient": "repeating-linear-gradient(100deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.4) 3%, transparent 5%, transparent 12%, rgba(255,255,255,0.4) 16%)",
