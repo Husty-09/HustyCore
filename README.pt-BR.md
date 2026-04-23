@@ -3,7 +3,7 @@
 ![Next.js](https://img.shields.io/badge/Next.js-15%2B-black?style=flat&logo=next.js)
 ![React](https://img.shields.io/badge/React-18%2B-blue?style=flat&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Estrito-blue?style=flat&logo=typescript)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat)
+![License](https://img.shields.io/badge/License-Dual--License-blue?style=flat)
 
 > 🌍 [Read this documentation in English](./README.md)
 
@@ -35,7 +35,7 @@ Explore nossos guias detalhados para informações técnicas aprofundadas:
 ### 1. Instalação
 Clone o projeto e instale as dependências:
 ```bash
-git clone https://github.com/MatheusCalonico/HustyCore.git
+git clone https://github.com/Husty-09/HustyCore.git
 cd HustyCore
 npm install --legacy-peer-deps
 ```
