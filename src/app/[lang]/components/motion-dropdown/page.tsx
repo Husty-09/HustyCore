@@ -7,7 +7,7 @@ import { NeonBadge } from "@/components/ui/neon-badge";
 
 export default async function MotionDropdownPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, "motion-dropdown");
   const sourceCode = readFileSync(join(process.cwd(), "src/components/ui/motion-dropdown.tsx"), "utf-8");
 
   return (

@@ -21,7 +21,7 @@ export function MarqueeDemo() {
 
 export default async function InfiniteMarqueePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, "infinite-marquee");
   const sourceCode = readFileSync(join(process.cwd(), "src/components/ui/infinite-marquee.tsx"), "utf-8");
 
   return (

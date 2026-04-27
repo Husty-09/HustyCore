@@ -5,9 +5,9 @@ import { NexusModal as NexusModalUI } from "@/components/ui/nexus-modal";
 import { GlowButton } from "@/components/ui/glow-button";
 import { CodeBlock } from "@/components/ui/code-block";
 import { NeonBadge } from "@/components/ui/neon-badge";
-import type { Dictionary } from "@/dictionaries/en";
+import type { NexusModalDict } from "@/lib/dictionaries";
 
-export function NexusModalClient({ dict, sourceCode }: { dict: Dictionary, sourceCode: string }) {
+export function NexusModalClient({ dict, sourceCode }: { dict: NexusModalDict, sourceCode: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

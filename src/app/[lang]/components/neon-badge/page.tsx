@@ -6,7 +6,7 @@ import { CodeBlock } from "@/components/ui/code-block";
 
 export default async function NeonBadgePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, "neon-badge");
   const sourceCode = readFileSync(join(process.cwd(), "src/components/ui/neon-badge.tsx"), "utf-8");
 
   return (

@@ -7,7 +7,7 @@ import { NeonBadge } from "@/components/ui/neon-badge";
 
 export default async function GlassInputPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, "glass-input");
   const sourceCode = readFileSync(join(process.cwd(), "src/components/ui/glass-input.tsx"), "utf-8");
 
   return (

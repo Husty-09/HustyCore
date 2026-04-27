@@ -28,7 +28,7 @@ export function GlareCardDemo() {
 
 export default async function GlareCardPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, "glare-card");
   const sourceCode = readFileSync(join(process.cwd(), "src/components/ui/3d-glare-card.tsx"), "utf-8");
 
   return (
@@ -67,7 +67,7 @@ export default async function GlareCardPage({ params }: { params: Promise<{ lang
 
       {/* Usage Code */}
       <div className="flex flex-col gap-4 mt-8">
-        <h3 className="text-xl font-semibold border-b border-border/40 pb-2">{dict.components.infiniteMarquee.usageTitle}</h3>
+        <h3 className="text-xl font-semibold border-b border-border/40 pb-2">{dict.components.glareCard.usageTitle}</h3>
         <p className="text-sm text-muted-foreground mb-2">{dict.components.glareCard.usageLabel} <code className="bg-primary/10 text-primary px-1 rounded">perspective: 1000px</code> {dict.components.glareCard.usageSpan}</p>
         <CodeBlock code={previewCode} language="tsx" />
       </div>

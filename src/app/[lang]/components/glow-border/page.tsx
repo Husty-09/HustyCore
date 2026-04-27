@@ -7,7 +7,7 @@ import { NeonBadge } from "@/components/ui/neon-badge";
 
 export default async function GlowBorderPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, "glow-border");
   const sourceCode = readFileSync(join(process.cwd(), "src/components/ui/glow-border.tsx"), "utf-8");
 
   return (

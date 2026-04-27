@@ -5,10 +5,10 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import type { Dictionary } from "@/dictionaries/en";
+import type { LayoutDict } from "@/lib/dictionaries";
 import { MotionDropdown } from "@/components/ui/motion-dropdown";
 
-export function Navbar({ dict, currentLang = "en" }: { dict?: Dictionary, currentLang?: string }) {
+export function Navbar({ dict, currentLang = "en" }: { dict?: LayoutDict, currentLang?: string }) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const router = useRouter();
   const pathname = usePathname();

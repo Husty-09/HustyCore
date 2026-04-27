@@ -4,7 +4,7 @@ import { GlassCard } from "@/components/ui/glass-card";
 
 export default async function DocumentationPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, "docs");
 
   return (
     <div className="flex flex-col gap-12 pb-20">

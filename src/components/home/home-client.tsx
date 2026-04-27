@@ -7,9 +7,9 @@ import { NeonBadge } from "@/components/ui/neon-badge";
 import { GlassInput } from "@/components/ui/glass-input";
 import { MotionDropdown } from "@/components/ui/motion-dropdown";
 import { NexusModal } from "@/components/ui/nexus-modal";
-import type { Dictionary } from "@/dictionaries/en";
+import type { HomeDict } from "@/lib/dictionaries";
 
-export default function HomeClient({ dict }: { dict: Dictionary }) {
+export default function HomeClient({ dict }: { dict: HomeDict }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (

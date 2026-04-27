@@ -15,7 +15,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export default async function InstallationPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, "install");
 
   return (
     <div className="flex flex-col gap-12 pb-20">

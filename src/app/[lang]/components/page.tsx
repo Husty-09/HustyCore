@@ -5,7 +5,7 @@ import { AnimatedGrid } from "@/components/ui/animated-grid";
 
 export default async function ComponentsOverview({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, "overview");
 
   return (
     <div className="flex flex-col gap-10 relative w-full h-full pb-20">

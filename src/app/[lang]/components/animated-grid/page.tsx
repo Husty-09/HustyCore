@@ -8,7 +8,7 @@ import { NeonBadge } from "@/components/ui/neon-badge";
 
 export default async function AnimatedGridPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, "animated-grid");
   const sourceCode = readFileSync(join(process.cwd(), "src/components/ui/animated-grid.tsx"), "utf-8");
 
   return (

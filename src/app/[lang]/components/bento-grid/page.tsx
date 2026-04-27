@@ -7,7 +7,7 @@ import { NeonBadge } from "@/components/ui/neon-badge";
 
 export default async function BentoGridPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang);
+  const dict = await getDictionary(lang, "bento-grid");
   const sourceCode = readFileSync(join(process.cwd(), "src/components/ui/bento-grid.tsx"), "utf-8");
 
   return (
